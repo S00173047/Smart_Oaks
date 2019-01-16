@@ -24,7 +24,6 @@ export class CameraCardComponent implements OnInit {
 
   openCameraModal() {
     const dialogRef = this.dialog.open(CameraModalComponent, {
-      maxHeight: "500px",
       maxWidth: "1000px",
       data: this.camera
     });

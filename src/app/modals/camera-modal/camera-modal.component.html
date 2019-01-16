@@ -1,21 +1,22 @@
 <div class="modalContainer">
   <div class="leftSide">
     <div class="title">
-      <h1>{{camera.Monitor.Name | titlecase}}</h1>
+      <div>{{camera.Monitor.Name | titlecase}}</div>
     </div>
     <div class="feedContainer">
       <img *ngIf='camera.Monitor.Id' src={{getCameraSrc(camera.Monitor.Id)}} alt="{{camera.Monitor.Name}}"/>
     </div>
   </div>
   <div class="rightSide">
+    <div class="eventListHeader">Latest 100 events</div>
     <div class="eventsList" *ngIf='events.length > 0'>
       <div class="eventCard" *ngFor='let event of events'>
         <div class="cardTopRow">
           <div class="eventTitle">{{event.Event.Name}}</div>
         </div>
         <div class="cardBottomRow">
-          <div class="cardStartTime">Started: {{event.Event.StartTime}}</div>
-          <div class="cardEndTIme">Ended: {{event.Event.EndTime}}</div>
+          <div>Started: {{event.Event.StartTime}}</div>
+          <div>Ended: {{event.Event.EndTime}}</div>
         </div>
       </div>
     </div>

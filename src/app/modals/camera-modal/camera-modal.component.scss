@@ -19,15 +19,20 @@
 .modalContainer {
     display: grid;
     grid-template-columns: repeat(2,auto);
-    grid-gap: 20px;
-    // max-height: 450px;
+    grid-column-gap: 20px;
+    grid-row-gap: 5px;
+    max-height: 500px;
 
     .leftSide {
+        display: grid;
+        grid-template-rows: auto 1fr;
         .title {
-    
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
         .feedContainer {
-            max-width: 500px;
+            max-width: 300px;
             img {
                 width: 100%;
             }
@@ -35,11 +40,18 @@
     }
 
     .rightSide {
-        .eventsList {
-            max-height: 450px;
-            overflow: scroll;
-            padding: 20px;
+        .eventListHeader {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
 
+        .eventsList {
+            max-height: 400px;
+            height: 100%;
+            overflow: scroll;
+            padding-right: 20px;
+            margin-bottom: 10px;
             .eventCard {
                 display: grid;
                 grid-template-rows: repeat(2,auto);
@@ -55,12 +67,6 @@
                     grid-template-columns: repeat(2,auto);
                     grid-column-gap: 10px;
                     font-size: 10px;
-                    .cardStartTime {
-
-                    }
-                    .cardEndTime {
-
-                    }
                 }
             }
         }
@@ -70,13 +76,22 @@
 @media only screen and (max-width: 600px) {
     .modalContainer {
         grid-template-columns: auto;
-    }
-    .eventCard {
-        .cardTopRow {
+        height: 500px;
 
+        .leftSide {
+            .title {
+                justify-self: center;
+            }
         }
-        .cardBottomRow {
-            grid-template-columns: auto;
+        .rightSide {
+            height: 200px;
+            .eventsList {
+                .eventCard {
+                    .cardBottomRow {
+                        grid-template-columns: auto;
+                    }
+                }
+            }
         }
     }
 }
