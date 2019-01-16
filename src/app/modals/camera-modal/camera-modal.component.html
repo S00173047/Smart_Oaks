@@ -4,7 +4,7 @@
       <div>{{camera.Monitor.Name | titlecase}}</div>
     </div>
     <div class="feedContainer">
-      <img *ngIf='camera.Monitor.Id' src={{getCameraSrc(camera.Monitor.Id)}} alt="{{camera.Monitor.Name}}"/>
+      <img *ngIf='camera.Monitor.Id' src={{feedSrc}} alt="{{camera.Monitor.Name}}"/>
     </div>
   </div>
   <div class="rightSide">

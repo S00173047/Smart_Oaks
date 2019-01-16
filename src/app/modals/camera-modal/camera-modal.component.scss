@@ -76,6 +76,7 @@
 @media only screen and (max-width: 600px) {
     .modalContainer {
         grid-template-columns: auto;
+        grid-template-rows: auto 1fr;
         height: 500px;
 
         .leftSide {

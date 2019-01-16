@@ -11,21 +11,25 @@ import { CameraModalComponent } from 'src/app/modals/camera-modal/camera-modal.c
 })
 export class CameraCardComponent implements OnInit {
   @Input() camera: IMonitor;
+  feedSrc: string;
 
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getCameraSrc();
   }
 
-  getCameraSrc(monitor) {
-    // return `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${monitor}&auth=f0a044a6950f450e8fdb6aefbb644569`
-    return `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${monitor}&auth=${env.zoneminder.authToken}`
+  getCameraSrc() {
+    this.feedSrc = `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${this.camera.Monitor.Id}&auth=${env.zoneminder.authToken}`
   }
 
   openCameraModal() {
     const dialogRef = this.dialog.open(CameraModalComponent, {
       maxWidth: "1000px",
-      data: this.camera
+      data: {
+        camera: this.camera,
+        feedSrc: this.feedSrc
+      }
     });
   }
 }

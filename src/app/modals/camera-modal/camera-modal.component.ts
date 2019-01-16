@@ -10,20 +10,22 @@ import { CamerasService } from 'src/services/cameras/cameras.service';
   styleUrls: ['./camera-modal.component.scss']
 })
 export class CameraModalComponent implements OnInit {
+  camera: IMonitor;
+  feedSrc: string;
   events: any = [];
-
+  
   constructor(
     private _camService: CamerasService,
     public dialogRef: MatDialogRef<CameraModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public camera: IMonitor
-  ) { }
-
-  ngOnInit() {
+    @Inject(MAT_DIALOG_DATA) data:{camera: IMonitor, feedSrc: string}
+  ) {
+    this.camera = data.camera;
+    this.feedSrc = data.feedSrc;
     this.getCameraEvents();
   }
 
-  getCameraSrc(monitor) {
-    return `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${monitor}&auth=${env.zoneminder.authToken}`
+  ngOnInit() {
+    // this.getCameraEvents();
   }
 
   getCameraEvents() {
