@@ -1,0 +1,39 @@
+<div class="logo">
+    <a class="simple-text">
+        <div class="logo-img">
+            <!-- <img src="../../../assets/images/logo-small.png" /> -->
+        </div>
+        Smart Home
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    
+    <!-- Actual Navigation Buttons -->
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <div class="icon">
+                    <mat-icon svgIcon='{{menuItem.icon}}'></mat-icon>
+                </div>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+
+    <!-- User profile options -->
+    <!-- <div class="userInfoPanel">
+        <div class="profilePic">
+            <img src="../../../assets/images/default_user.png" />
+        </div>
+        <div class="topRow">
+            <div>
+                {{fName}}
+            </div>
+        </div>
+        <div class="bottomRow">
+            <div class="logoutIcon">
+                <mat-icon svgIcon='logout-variant' (click)='logOut()'></mat-icon>
+            </div>
+        </div>
+    </div> -->
+</div>

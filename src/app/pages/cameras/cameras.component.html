@@ -1,0 +1,12 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div *ngIf='loggedIn'>
+      <div class="monitorsList" *ngIf='cameras.length > 0'>
+        <camera-card *ngFor='let cam of cameras' [camera]='cam'></camera-card>
+      </div>
+    </div>
+    <div *ngIf='!loggedIn'>
+      Waiting for login
+    </div>
+  </div>
+</div>

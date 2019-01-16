@@ -1,0 +1,82 @@
+@import "../../../variables.scss";
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: $primary;
+    padding-right: 5px;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: darken($primary, 5)
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #f1f1f1; 
+}
+
+.modalContainer {
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    grid-gap: 20px;
+    // max-height: 450px;
+
+    .leftSide {
+        .title {
+    
+        }
+        .feedContainer {
+            max-width: 500px;
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .rightSide {
+        .eventsList {
+            max-height: 450px;
+            overflow: scroll;
+            padding: 20px;
+
+            .eventCard {
+                display: grid;
+                grid-template-rows: repeat(2,auto);
+
+                .cardTopRow {
+                    .eventTitle {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+                .cardBottomRow {
+                    display: grid;
+                    grid-template-columns: repeat(2,auto);
+                    grid-column-gap: 10px;
+                    font-size: 10px;
+                    .cardStartTime {
+
+                    }
+                    .cardEndTime {
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .modalContainer {
+        grid-template-columns: auto;
+    }
+    .eventCard {
+        .cardTopRow {
+
+        }
+        .cardBottomRow {
+            grid-template-columns: auto;
+        }
+    }
+}

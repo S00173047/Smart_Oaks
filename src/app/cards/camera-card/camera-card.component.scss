@@ -1,0 +1,23 @@
+.cardContainer {
+    background: lightgray;
+    border-radius: 10px;
+    overflow:hidden;
+
+    .topRow {
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        .modalIcon {
+            grid-column: 2;
+            margin: 5px;
+            margin-bottom: 0px;
+
+            mat-icon { }
+        }
+    }
+    .imgContainer {
+        img {
+            width: 100%;
+        }
+    }
+}

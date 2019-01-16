@@ -1,0 +1,13 @@
+.monitorsList {
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat((2,auto));
+    grid-gap: 5px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .monitorsList {
+        grid-template-columns: 1fr;
+    }
+}

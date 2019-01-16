@@ -1,0 +1,11 @@
+<div *ngIf='camera.Monitor' class="cardContainer">
+    <div class="topRow">
+        <div class="modalIcon" (click)='openCameraModal()'>
+            <mat-icon>open_in_new</mat-icon>
+        </div>
+    </div>
+    <div class="imgContainer">
+        <img *ngIf='camera.Monitor.Id' src={{getCameraSrc(camera.Monitor.Id)}} alt="{{camera.Monitor.Name}}"/>
+    </div>
+</div>
+
