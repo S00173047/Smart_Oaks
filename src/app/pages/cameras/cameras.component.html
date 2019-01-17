@@ -5,8 +5,8 @@
         <camera-card *ngFor='let monitor of zoneminder.monitors;' [camera]='monitor'></camera-card>
       </div>
     </div>
-    <div *ngIf='!loggedIn'>
-      Waiting for login
+    <div *ngIf='!zoneminder.loggedIn' class="noLogin">
+      <h1>Waiting for login</h1>
     </div>
   </div>
 </div>

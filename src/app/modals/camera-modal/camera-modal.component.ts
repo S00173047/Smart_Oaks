@@ -31,7 +31,6 @@ export class CameraModalComponent implements OnInit {
   getCameraEvents() {
     this._camService.getEventsForMonitor(this.camera.Monitor.Id).subscribe(res => {
       this.events = res as IEvent[]
-      console.log(this.events);
     })
   }
 

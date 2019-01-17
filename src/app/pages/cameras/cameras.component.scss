@@ -5,6 +5,13 @@
     grid-gap: 5px;
 }
 
+.noLogin {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    height: 80vh;
+}
+
 
 @media only screen and (max-width: 600px) {
     .monitorsList {

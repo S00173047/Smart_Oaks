@@ -54,7 +54,7 @@ export class CamerasService {
   }
   // Get A list of monitors
   getMonitors() {
-    console.log("Getting monitors")
+    console.info("[ZM]Getting all monitors")
     // return this._http.get(`${this.endpoint}/monitors.json${this.loginString}`, this.httpOptions)
     this._http.get(`${this.endpoint}/monitors.json${this.loginString}`, this.httpOptions)
       .subscribe(
@@ -69,54 +69,32 @@ export class CamerasService {
   }
 
   //Get a monitor based off its id -> Http://server/zm/api/monitors/1.json
-  public getCamera(id: string): IMonitor {
-    let monitor: IMonitor; 
-    this._http.get(`${this.endpoint}/monitors/${id}.json${this.loginString}`, this.httpOptions)
-      .subscribe(
-        data => {
+  public getCamera(id: string) {
+    console.info(`[ZM]Getting camera ${id}`)
+    return this._http.get(`${this.endpoint}/monitors/${id}.json${this.loginString}`, this.httpOptions)
+      .pipe(map(data => {
           let response = data as { monitor }
-          monitor = response.monitor
-        },
-        err => {
-          console.error(`[ZM]Error getting monitor ${id}, ${err.error.data.message}`)
-          this.notification.showError(`[ZM]Error getting monitor ${id}`, err.error.data.message)
-      })
-
-    return monitor;
+          return response.monitor;
+        }))
   }
 
   //Get event based of its id -> Http://server/zm/api/events/1000.json
-  public getEvent(id: string): IEvent {
-    let event: IEvent;
-    this._http.get(`${this.endpoint}/events/${id}.json${this.loginString}`, this.httpOptions)
-      .subscribe(
-        data => {
-          let response = data
-          console.log(response);
-        },
-        err => {
-          console.error(`[ZM]Error getting event ${id}, ${err.error.data.message}`)
-          this.notification.showError(`[ZM]Error getting event ${id}`, err.error.data.message)
-      })
-
-      return event;
+  public getEvent(id: string){
+    console.info(`[ZM]Getting event ${id}`)
+    return this._http.get(`${this.endpoint}/events/${id}.json${this.loginString}`, this.httpOptions)
+      .pipe(map(data => {
+          console.log(data)
+          let response = data;
+        }))
   }
 
   //Get events for a certain monitor -> http://server/zm/api/events/index/MonitorId:5.json
   public getEventsForMonitor(id: string): Observable<IEvent[]> {
+    console.info(`[ZM]Getting events for monitor ${id}`);
     return this._http.get(`${this.endpoint}/events/index/MonitorId:${id}.json${this.loginString}`, this.httpOptions)
       .pipe(map(data => {
         let response = data as { events: IEvent[], pagination }
         return response.events
       }))
-      // .subscribe(
-      //   data => {
-      //     let response = data as { events: IEvent[], pagination }
-      //     return response.events as IEvent[];
-      //   },
-      //   err => {
-      //     console.error(`[ZM]Error getting events for monitor ${id}, ${err.error.data.message}`)
-      //     this.notification.showError(`[ZM]Error getting monitor ${id}`, err.error.data.message)
-      // })
   }
 }
