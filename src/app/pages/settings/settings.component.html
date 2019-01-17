@@ -4,18 +4,33 @@
 
     <div class="settingsPanel">
       <div class="title">Philips Hue</div>
+      <p>If the lights stop responding or receiving commands, try reconneting to the hub here</p>
       <div class="statusContainer">
+        <div>Hue username: </div>
+        <div>{{hue.username}}</div>
+
         <div>Hue status: </div>
-        <div *ngIf='hueConnected' style="color: green">connected</div>
-        <div *ngIf='!hueConnected' style="color: red">not connected/unknown</div>
+        <div>
+          <div *ngIf='hue.connected' style="color: green">connected</div>
+          <div *ngIf='!hue.connected' style="color: orangered">unknown</div>
+        </div>
       </div>
-      <button (click)='connectHue()'>Link Hue</button>
+      <button (click)='connectHue()' class="btn btn-primary btn-sm">Link Hue</button>
     </div>
 
-    <!-- <div class="settingsPanel">
-      <div class="title">Zoneminder</div>
-      <button></button>
-    </div> -->
+    <div class="settingsPanel">
+        <div class="title">Zoneminder</div>
+        <p>Zoneminder should login on startup but if it doesn't, you can force a login attempt here</p>
+        <div class="statusContainer">
+          <div>Status: </div>
+          <div>
+            <div *ngIf='cameras.loggedIn' style="color: green">connected</div>
+            <div *ngIf='!cameras.loggedIn' style="color: orangered">unknown</div>
+          </div>
+        </div>
+        <button (click)='connectZoneminder()' class="btn btn-primary btn-sm">Attempt login</button>
+      </div>
+  
     <a routerLink=''>Return to site</a>
   </div>
 </div>

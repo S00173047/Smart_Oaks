@@ -12,7 +12,7 @@ export class PhilipsHueService {
   endpoint: string = `${env.hue_hub.endpoint}/api`;
 
   connected: boolean = false;
-  userName: string;
+  username: string;
 
   httpOptions = {
     withCredentials: false,
@@ -22,7 +22,9 @@ export class PhilipsHueService {
     })
   };
 
-  constructor(private _http: HttpClient, private notification: NotificationService) { }
+  constructor(private _http: HttpClient, private notification: NotificationService) {
+    this.username = env.hue_hub.username;
+  }
 
   connectToBridge() {
     console.log("Connecting to bridge")
@@ -37,7 +39,7 @@ export class PhilipsHueService {
         console.log(response);
         if(response.success != null)
         {
-          this.userName = response.success.username;
+          this.username = response.success.username;
           this.connected = true;
           this.notification.showSuccess("Hue linked successfully",`username: ${response.success.username}`)
         }

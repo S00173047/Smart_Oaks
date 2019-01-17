@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError, Observable, of } from 'rxjs';
 import { HttpParamsOptions } from '@angular/common/http/src/params';
 import { IMonitor, IEvent } from 'src/model/cameras.model';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,21 +30,27 @@ export class CamerasService {
 
   authResponse;
 
-  constructor(private _http: HttpClient) {
-    this.login();
-  }
+  constructor(private _http: HttpClient, private notification: NotificationService) { }
 
   //Login to the API
-  async login() {
-    this._http.get(`${this.endpoint}/host/login.json${this.loginString}`, this.httpOptions)
-      .subscribe(res => {
-        let response = res as { apiVersion, append_password, credentials, version }
-        this.authParam = response.credentials;
-        this.authResponse = response;
-        this.loggedIn = true;
-      },
-      catchError(this.handleError)
-    )
+  login() {
+     this._http.get(`${this.endpoint}/host/login.json${this.loginString}`, this.httpOptions)
+         .subscribe(
+           data => {
+             let response = data as { apiVersion, append_password, credentials, version }
+             this.authParam = response.credentials;
+             this.authResponse = response;
+             if(response.credentials)
+             {
+               this.loggedIn = true;
+               this.notification.showSuccess("Zoneminder logged in successfully");
+              }
+           },
+           err => {
+             console.error(`Error during Zoneminder login, ${err.error.data.message}`)
+             this.notification.showError("Error during Zoneminder login", err.error.data.message)
+           }
+         )
   }
   // Get A list of monitors
   getMonitors(): Observable<IMonitor[]> {
@@ -51,8 +58,7 @@ export class CamerasService {
       .pipe(map(res => {
         let response = res as { monitors }
         return response.monitors as IMonitor[];
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 
@@ -62,8 +68,7 @@ export class CamerasService {
       .pipe(map(res => {
         let response = res as { monitor }
         return response.monitor as IMonitor;
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 
@@ -73,8 +78,7 @@ export class CamerasService {
       .pipe(map(res => {
         console.log(res);
         return res;
-      }),
-      catchError(this.handleError)
+      })
     );    
   }
 
@@ -84,20 +88,7 @@ export class CamerasService {
       .pipe(map(res => {
         let response = res as { events: IEvent[], pagination }
         return response.events;
-      }),
-      catchError(this.handleError)
+      })
     );
-  }
-  //Error handling
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error("An error occurred:", error.error.message);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-          `body was: ${error.error.message}`
-      );
-    }
-    return throwError(error);
   }
 }

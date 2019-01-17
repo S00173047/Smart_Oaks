@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
+import { CamerasService } from 'src/services/cameras/cameras.service';
+import { IMonitor } from 'src/model/cameras.model';
 
 @Component({
   selector: 'settings',
@@ -7,18 +9,15 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  hueConnected: boolean = false;
+  constructor(private hue: PhilipsHueService, private cameras: CamerasService) { }
 
-  constructor(private hue: PhilipsHueService) { }
-
-  ngOnInit() {
-    this.hueConnected = this.hue.connected;
-  }
+  ngOnInit() { }
 
   connectHue() {
     this.hue.connectToBridge();
-    setTimeout(() => {
-      this.hueConnected = this.hue.connected;
-    }, 5000);
+  }
+
+  connectZoneminder() {
+
   }
 }

@@ -12,8 +12,9 @@ import { NotificationService } from 'src/services/notification/notification.serv
 })
 export class AppComponent implements OnInit{
 
-  constructor(private cams: CamerasService, private hue: PhilipsHueService)  {
-  }
+  constructor(private cams: CamerasService, private hue: PhilipsHueService)  { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cams.login();
+  }
 }
