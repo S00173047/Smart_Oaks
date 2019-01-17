@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CamerasService } from 'src/services/cameras/cameras.service';
 import { RequestZoneminderAuth } from 'src/redux/actions/camera.actions';
 import { Store } from '@ngxs/store';
+import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
+import { NotificationService } from 'src/services/notification/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,8 @@ import { Store } from '@ngxs/store';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private cams: CamerasService) {
+  constructor(private cams: CamerasService, private hue: PhilipsHueService)  {
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }

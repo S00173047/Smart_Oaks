@@ -5,18 +5,18 @@ import { ToastrService } from "ngx-toastr";
   providedIn: "root"
 })
 export class NotificationService {
-  constructor(private toastr: ToastrService) {}
+  constructor(private notification: ToastrService) {}
 
   showSuccess(title: string, message?: string) {
-    this.toastr.success(message, title);
+    this.notification.success(message, title, { progressBar: true});
   }
   showError(title: string, message?: string) {
-    this.toastr.error(message, title);
+    this.notification.error(message, title, { progressBar: true});
   }
   showWarning(title: string, message?: string) {
-    this.toastr.warning(message, title);
+    this.notification.warning(message, title, { progressBar: true});
   }
   showInfo(title: string, message?: string) {
-    this.toastr.info(message, title);
+    this.notification.info(message, title, { progressBar: true});
   }
 }

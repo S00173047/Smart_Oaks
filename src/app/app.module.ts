@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+
 //Material Design Icons
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -15,7 +16,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import { NgxsModule } from '@ngxs/store';
 
 //Toastr
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 
 // Angular material imports
 import { AngularMaterialModule } from "./angular-material.module";
@@ -40,6 +41,10 @@ import { CameraCardComponent } from './cards/camera-card/camera-card.component';
 import { CamerasService } from 'src/services/cameras/cameras.service';
 import { CameraModalComponent } from './modals/camera-modal/camera-modal.component';
 import { env } from 'src/environments/environment';
+import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { NotificationService } from 'src/services/notification/notification.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -56,19 +61,18 @@ import { env } from 'src/environments/environment';
     UsersComponent,
     LoginComponent,
     CameraCardComponent,
-    CameraModalComponent
+    CameraModalComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AngularMaterialModule,
     AngularFireModule.initializeApp(env.firebase.config),
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    NgxsModule.forRoot([
-      UserState
-    ]),
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: "toast-bottom-right",
@@ -79,14 +83,18 @@ import { env } from 'src/environments/environment';
       newestOnTop: true,
       autoDismiss: true,
       easeTime: 300
-    })
+    }),
+    NgxsModule.forRoot([
+      UserState
+    ])
   ],
   providers: [
-    CamerasService
+    NotificationService,
+    CamerasService,
+    PhilipsHueService
   ],
   bootstrap: [AppComponent],
-  entryComponents:
-  [
+  entryComponents: [
     CameraModalComponent
   ]
 })
@@ -98,5 +106,6 @@ export class AppModule {
     iconRegistry.addSvgIcon('floor-plan',sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/floor-plan.svg'));
     iconRegistry.addSvgIcon('view-dashboard',sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/view-dashboard.svg'));
     iconRegistry.addSvgIcon('logout-variant',sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logout-variant.svg'));
+    iconRegistry.addSvgIcon('settings',sanitizer.bypassSecurityTrustResourceUrl('../assets/icons/settings.svg'));
   }
 }

@@ -7,6 +7,7 @@ import { CamerasComponent } from './pages/cameras/cameras.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'app' },
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'cameras', component: CamerasComponent },
       { path: 'downloads', component: DownloadsComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'settings', component: SettingsComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   },

@@ -30,14 +30,11 @@ export class CamerasService {
   authResponse;
 
   constructor(private _http: HttpClient) {
-    console.log("Camera Service Started")
     this.login();
   }
 
   //Login to the API
   async login() {
-    console.log("Logging in...")
-
     this._http.get(`${this.endpoint}/host/login.json${this.loginString}`, this.httpOptions)
       .subscribe(res => {
         let response = res as { apiVersion, append_password, credentials, version }

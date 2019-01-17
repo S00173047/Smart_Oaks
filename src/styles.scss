@@ -1,11 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~ngx-toastr/toastr-bs4-alert";
-// @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "./variables.scss";
 
 @font-face {
   font-family: raleway;
@@ -16,8 +11,54 @@
   src: url(assets/fonts/Montserrat/Montserrat-Regular.ttf) format("opentype");
 }
 
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~ngx-toastr/toastr-bs4-alert.scss";
+
 body {
   margin: 0;
   padding: 0;
   background-color: #eee;
+}
+
+//Toastr Fixes
+#toast-container > div {
+  opacity: none;
+}
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+  color: white;
+}
+.toast-success {
+  background-color: #51A351 !important;
+}
+.toast-error {
+  color: white;
+  background-color: #BD362F !important;
+}
+.toast-info {
+  background-color: #2F96B4 !important;
+}
+.toast-warning {
+  background-color: #F89406 !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: $primary;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darken($primary, 5)
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}#toast-container > div {
+    opacity:1;
 }

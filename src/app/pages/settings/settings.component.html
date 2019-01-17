@@ -1,0 +1,21 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <h1>Settings</h1>
+
+    <div class="settingsPanel">
+      <div class="title">Philips Hue</div>
+      <div class="statusContainer">
+        <div>Hue status: </div>
+        <div *ngIf='hueConnected' style="color: green">connected</div>
+        <div *ngIf='!hueConnected' style="color: red">not connected/unknown</div>
+      </div>
+      <button (click)='connectHue()'>Link Hue</button>
+    </div>
+
+    <!-- <div class="settingsPanel">
+      <div class="title">Zoneminder</div>
+      <button></button>
+    </div> -->
+    <a routerLink=''>Return to site</a>
+  </div>
+</div>

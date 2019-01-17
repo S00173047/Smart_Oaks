@@ -51,7 +51,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
     // @Select(UserState.getUser) user$: Observable<IUser>
     menuItems: any[];
-    fName: string
+    fName: string = "Anon";
 
     constructor(
         private _auth: AuthService,
@@ -61,8 +61,6 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
-
-        this.fName = "Steve";
     }
 
     isMobileMenu() {

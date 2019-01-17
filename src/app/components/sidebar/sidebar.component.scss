@@ -1,3 +1,4 @@
+@import "../../../variables.scss";
 .sidebar-wrapper {
     display: grid;
     grid-template-columns: auto;
@@ -62,15 +63,22 @@
                 padding: 2px;
             }
 
-            .logoutIcon {
+            .panelIcon {
                 border: 1px darkgray solid;
                 border-radius: 5px;
-                // padding: 2px;
                 margin: 2px;
                 padding-bottom: 3px;
                 cursor: pointer;
             }
-            .logoutIcon:hover {
+            .panelIcon:hover {
+                background: $primary;
+                color: white;
+            }
+            .active {
+                background: $primary;
+                color: white;
+            }
+            #logout:hover {
                 background: #cc0000;
                 color: white;
             }
