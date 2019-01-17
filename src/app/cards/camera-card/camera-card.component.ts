@@ -16,10 +16,6 @@ export class CameraCardComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getCameraSrc();
-  }
-
-  getCameraSrc() {
     this.feedSrc = `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${this.camera.Monitor.Id}&auth=${env.zoneminder.authToken}`
   }
 

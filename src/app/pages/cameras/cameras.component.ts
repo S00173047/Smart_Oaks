@@ -12,10 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cameras.component.scss']
 })
 export class CamerasComponent implements OnInit {
-  cameras: IMonitor[] = [];
-  loggedIn: boolean;
   
-  constructor(private _camService: CamerasService, private store: Store) { }
+  constructor(private zoneminder: CamerasService, private store: Store) { }
 
   ngOnInit() {
     // this.store.dispatch(new RequestZoneminderAuth());
@@ -26,22 +24,19 @@ export class CamerasComponent implements OnInit {
   loginCheck (i: number) {
     setTimeout(() => {
       console.log(`Checking for login (${i}/10)`)
-      if (i < 10 && !this._camService.loggedIn)
+      if (i < 10 && !this.zoneminder.loggedIn)
       {
           this.loginCheck(i+1)
       }
       else
       {
         console.log("Logged in succesfully")
-        this.loggedIn = true;
         this.postLogin();
       }
     }, 500)
   }
 
   postLogin() {
-    this._camService.getMonitors().subscribe(res => {
-      this.cameras = res as IMonitor[];
-    })
+    this.zoneminder.getMonitors();
   }
 }

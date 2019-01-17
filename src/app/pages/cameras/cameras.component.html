@@ -1,8 +1,8 @@
 <div class="main-content">
   <div class="container-fluid">
-    <div *ngIf='loggedIn'>
-      <div class="monitorsList" *ngIf='cameras.length > 0'>
-        <camera-card *ngFor='let cam of cameras' [camera]='cam'></camera-card>
+    <div *ngIf='zoneminder.loggedIn'>
+      <div class="monitorsList" *ngIf='zoneminder.monitors.length > 0'>
+        <camera-card *ngFor='let monitor of zoneminder.monitors;' [camera]='monitor'></camera-card>
       </div>
     </div>
     <div *ngIf='!loggedIn'>

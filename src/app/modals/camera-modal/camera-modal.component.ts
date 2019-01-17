@@ -34,4 +34,8 @@ export class CameraModalComponent implements OnInit {
       console.log(this.events);
     })
   }
+
+  openEventLink(e: IEvent) {
+    window.open(`${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?mode=jpeg&frame=1&replay=none&source=event&event=${e.Event.Id}&auth=${env.zoneminder.authToken}`,"_blank");
+  }
 }

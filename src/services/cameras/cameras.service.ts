@@ -13,22 +13,20 @@ import { NotificationService } from '../notification/notification.service';
 export class CamerasService {
   endpoint: string = `${env.zoneminder.endpoint}/zm/api`;
   loginString: string = `?user=${env.zoneminder.username}&pass=${env.zoneminder.password}`
-  authParam: string;
 
   loggedIn: boolean = false;
 
+  authParam: string;
+  authResponse;
+  monitors: IMonitor[] = [];
   httpOptions = {
     withCredentials: false,
     headers: new HttpHeaders({
-      // "Content-Type": "application/x-www-form-urlencoded",
-      // "Content-Type":"multipart/form-data",
-      // "Content-Type": "application/json",  //Doesn't Accept
       "Content-Type": "text/plain;charset=UTF-8",
       "Accept": "application/json"
     })
   };
 
-  authResponse;
 
   constructor(private _http: HttpClient, private notification: NotificationService) { }
 
@@ -38,57 +36,87 @@ export class CamerasService {
          .subscribe(
            data => {
              let response = data as { apiVersion, append_password, credentials, version }
+
+            //  document.cookie = `apiVersion=${response.apiVersion};append_password=${response.append_password};credentials=${response.credentials};;version=${response.version};secure`;
+
              this.authParam = response.credentials;
-             this.authResponse = response;
-             if(response.credentials)
+             if(response.credentials != null)
              {
                this.loggedIn = true;
                this.notification.showSuccess("Zoneminder logged in successfully");
               }
            },
            err => {
-             console.error(`Error during Zoneminder login, ${err.error.data.message}`)
-             this.notification.showError("Error during Zoneminder login", err.error.data.message)
+             console.error(`[ZM]Error during login, ${err.error.data.message}`)
+             this.notification.showError("[ZM]Error during login", err.error.data.message)
            }
          )
   }
   // Get A list of monitors
-  getMonitors(): Observable<IMonitor[]> {
-    return this._http.get(`${this.endpoint}/monitors.json${this.loginString}`, this.httpOptions)
-      .pipe(map(res => {
-        let response = res as { monitors }
-        return response.monitors as IMonitor[];
+  getMonitors() {
+    console.log("Getting monitors")
+    // return this._http.get(`${this.endpoint}/monitors.json${this.loginString}`, this.httpOptions)
+    this._http.get(`${this.endpoint}/monitors.json${this.loginString}`, this.httpOptions)
+      .subscribe(
+        data => {
+          let response = data as { monitors }
+          this.monitors =  response.monitors as IMonitor[]
+        },
+        err => {
+          console.error(`[ZM]Error getting monitors, ${err.error.data.message}`)
+          this.notification.showError("[ZM]Error getting monitors", err.error.data.message)
       })
-    );
   }
 
   //Get a monitor based off its id -> Http://server/zm/api/monitors/1.json
-  public getCamera(camera: string): Observable<IMonitor> {
-    return this._http.get(`${this.endpoint}/monitors/${camera}.json${this.loginString}`, this.httpOptions)
-      .pipe(map(res => {
-        let response = res as { monitor }
-        return response.monitor as IMonitor;
+  public getCamera(id: string): IMonitor {
+    let monitor: IMonitor; 
+    this._http.get(`${this.endpoint}/monitors/${id}.json${this.loginString}`, this.httpOptions)
+      .subscribe(
+        data => {
+          let response = data as { monitor }
+          monitor = response.monitor
+        },
+        err => {
+          console.error(`[ZM]Error getting monitor ${id}, ${err.error.data.message}`)
+          this.notification.showError(`[ZM]Error getting monitor ${id}`, err.error.data.message)
       })
-    );
+
+    return monitor;
   }
 
   //Get event based of its id -> Http://server/zm/api/events/1000.json
-  public getEvent(event: string) {
-    return this._http.get(`${this.endpoint}/events/${event}.json${this.loginString}`, this.httpOptions)
-      .pipe(map(res => {
-        console.log(res);
-        return res;
+  public getEvent(id: string): IEvent {
+    let event: IEvent;
+    this._http.get(`${this.endpoint}/events/${id}.json${this.loginString}`, this.httpOptions)
+      .subscribe(
+        data => {
+          let response = data
+          console.log(response);
+        },
+        err => {
+          console.error(`[ZM]Error getting event ${id}, ${err.error.data.message}`)
+          this.notification.showError(`[ZM]Error getting event ${id}`, err.error.data.message)
       })
-    );    
+
+      return event;
   }
 
   //Get events for a certain monitor -> http://server/zm/api/events/index/MonitorId:5.json
-  public getEventsForMonitor(monitor: string) {
-    return this._http.get(`${this.endpoint}/events/index/MonitorId:${monitor}.json${this.loginString}`, this.httpOptions)
-      .pipe(map(res => {
-        let response = res as { events: IEvent[], pagination }
-        return response.events;
-      })
-    );
+  public getEventsForMonitor(id: string): Observable<IEvent[]> {
+    return this._http.get(`${this.endpoint}/events/index/MonitorId:${id}.json${this.loginString}`, this.httpOptions)
+      .pipe(map(data => {
+        let response = data as { events: IEvent[], pagination }
+        return response.events
+      }))
+      // .subscribe(
+      //   data => {
+      //     let response = data as { events: IEvent[], pagination }
+      //     return response.events as IEvent[];
+      //   },
+      //   err => {
+      //     console.error(`[ZM]Error getting events for monitor ${id}, ${err.error.data.message}`)
+      //     this.notification.showError(`[ZM]Error getting monitor ${id}`, err.error.data.message)
+      // })
   }
 }

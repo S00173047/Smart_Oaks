@@ -9,8 +9,8 @@
   </div>
   <div class="rightSide">
     <div class="eventListHeader">Latest 100 events</div>
-    <div class="eventsList" *ngIf='events.length > 0'>
-      <div class="eventCard" *ngFor='let event of events'>
+    <div class="eventsList" *ngIf='events'>
+      <div class="eventCard" *ngFor='let event of events' (click)='openEventLink(event)'>
         <div class="cardTopRow">
           <div class="eventTitle">{{event.Event.Name}}</div>
         </div>
