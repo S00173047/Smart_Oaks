@@ -53,20 +53,42 @@
             padding-right: 20px;
             margin-bottom: 10px;
             .eventCard {
+                background: lightgray;
+                border-radius: 5px;
+                margin: 2px;
+                padding-left: 5px;
+                padding-right: 5px;
                 display: grid;
+                grid-column-gap: 5px;
                 grid-template-rows: repeat(2,auto);
+                grid-template-areas: "top button"
+                                     "bot button";
 
                 .cardTopRow {
-                    .eventTitle {
-                        font-size: 14px;
-                        font-weight: 500;
-                    }
+                    grid-area: top;
+                    font-size: 14px;
+                    font-weight: 500;
                 }
                 .cardBottomRow {
+                    grid-area: bot;
                     display: grid;
                     grid-template-columns: repeat(2,auto);
                     grid-column-gap: 10px;
                     font-size: 10px;
+                }
+                .cardRight {
+                    margin: 5px;
+                    border-radius: 50%;
+                    background:gray;
+                    color: white;
+                    grid-area: button;
+                    align-self: center;
+                    cursor: pointer;
+
+                    mat-icon {
+                        margin: 5px;
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
