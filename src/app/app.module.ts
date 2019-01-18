@@ -45,7 +45,13 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
 import { SettingsComponent } from './pages/settings/settings.component';
 import { NotificationService } from 'src/services/notification/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SittingRoomComponent } from './pages/rooms/sitting-room/sitting-room.component';
+import { KitchenComponent } from './pages/rooms/kitchen/kitchen.component';
+import { HallwayComponent } from './pages/rooms/hallway/hallway.component';
+import { LandingComponent } from './pages/rooms/landing/landing.component';
+import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom.component';
+import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
+import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +68,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     CameraCardComponent,
     CameraModalComponent,
-    SettingsComponent
+    SettingsComponent,
+    SittingRoomComponent,
+    KitchenComponent,
+    HallwayComponent,
+    LandingComponent,
+    DaireBedroomComponent,
+    FloorPlanComponent,
+    HueLightCardComponent
   ],
   imports: [
     BrowserModule,
