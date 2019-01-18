@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { HttpClientModule } from "@angular/common/http";
+
+import 'hammerjs';
 
 //Firestore/Firebase/FireAuth
 import { AngularFireModule } from '@angular/fire';
@@ -52,6 +53,7 @@ import { LandingComponent } from './pages/rooms/landing/landing.component';
 import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom.component';
 import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
 import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.component';
+import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +77,8 @@ import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.com
     LandingComponent,
     DaireBedroomComponent,
     FloorPlanComponent,
-    HueLightCardComponent
+    HueLightCardComponent,
+    HueGroupCardComponent
   ],
   imports: [
     BrowserModule,

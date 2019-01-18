@@ -44,6 +44,7 @@ export interface IBridgeConfig {
 }
 
 export interface IHueGroup {
+    id: string
     action:
     {
         alert: string
@@ -73,6 +74,7 @@ export interface IHueGroup {
 }
 
 export interface IHueResourceLink {
+    id: string
     classid: number
     description: string
     links: string[]
@@ -83,6 +85,7 @@ export interface IHueResourceLink {
 }
 
 export interface IHueRule {
+    id: string
     actions:
     {
         address: string
@@ -105,6 +108,7 @@ export interface IHueRule {
 }
 
 export interface IHueSensor {
+    id: string
     config:
     {
         on: boolean
@@ -124,6 +128,7 @@ export interface IHueSensor {
     type: string
 }
 export interface IHueScene {
+    id: string
     appdata:
     {
         version: number,
@@ -140,7 +145,9 @@ export interface IHueScene {
     version: number
 }
 
-export interface IHueSchedule {autodelete: false
+export interface IHueSchedule {
+    id: string
+    autodelete: boolean
     command: 
     {
         address: string

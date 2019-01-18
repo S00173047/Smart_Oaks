@@ -1,6 +1,7 @@
 <div class="cardContainer" *ngIf='light'>
   <div class="title">{{light.name}}</div>
   <div class="switch">
-    <mat-slide-toggle [checked]='light.state.on' (change)='turnOnOff()'>{{light.state.on?'On':'Off'}}</mat-slide-toggle>
+    <!-- {{light.state.on?'On':'Off'}} -->
+    <mat-slide-toggle [checked]='light.state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
   </div>
 </div>

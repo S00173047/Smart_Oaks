@@ -8,7 +8,7 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
 })
 export class DaireBedroomComponent implements OnInit {
 
-  constructor(private hue: PhilipsHueService) { }
+  constructor(public hue: PhilipsHueService) { }
 
   ngOnInit() { }
 

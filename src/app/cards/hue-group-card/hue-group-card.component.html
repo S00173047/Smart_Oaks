@@ -1,0 +1,6 @@
+<div class="cardContainer">
+  <div class="lightsList" *ngIf='group'>
+      <h1>{{group.name}}</h1>
+      <hue-light-card *ngFor='let light of hue.state.lights; index as i ' [lightInput]='light'></hue-light-card>
+  </div>
+</div>

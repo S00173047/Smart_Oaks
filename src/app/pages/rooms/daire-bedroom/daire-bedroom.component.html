@@ -4,6 +4,9 @@
       <h1>Lights</h1>
       <hue-light-card *ngFor='let light of hue.state.lights' [lightInput]='light'></hue-light-card>
     </div>
+    <div class="groupsList" *ngIf='hue.state.groups.length > 0'>
+      <hue-group-card *ngFor='let group of hue.state.groups' [groupInput]='group'></hue-group-card>
+    </div>
   </div>
 </div>
 <button (click)='logLights()'>Log lights to console</button>

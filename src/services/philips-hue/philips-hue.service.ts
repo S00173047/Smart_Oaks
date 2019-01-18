@@ -39,6 +39,26 @@ export class PhilipsHueService {
   constructor(private _http: HttpClient, private notification: NotificationService) {
   }
 
+  //Turn light on/off
+  toggleLightOnOff(l: IHueLight) {
+    let body = {
+      on: !l.state.on
+    }
+    switch(body.on)
+    {
+      case true:
+        console.log(`Turning ${l.name} light on`)
+        this.changeLightState(l.id,body)
+        break;
+      case false:
+        console.log(`Turning ${l.name} light off`)
+        this.changeLightState(l.id,body)
+        break;
+    }
+
+    this.updateLight(l)
+  }
+
   //Request new username from hue hub
   connectToBridge() {
     console.info("[PH]Connecting to bridge")
@@ -61,8 +81,8 @@ export class PhilipsHueService {
           { this.notification.showError("[PH]Hue failed to link",`${response.error.type}: ${response.error.description}`) }
         },
         err => {
-          console.error(`[PH]Error linking hub, ${err.error.data.message}`)
-          this.notification.showError("[PH]Error linking hub", err.error.data.message)
+          console.error(`[PH]Error linking hub, ${err}`)
+          this.notification.showError("[PH]Error linking hub", `${err}`)
         })
   }
 
@@ -75,50 +95,59 @@ export class PhilipsHueService {
         let response = x as { config, groups, lights, resourcelinks, rules, scenes, schedules, sensors }
 
         this._state.config = response.config as IBridgeConfig;
-        Object.keys(response.groups).map(i => {this._state.groups.push(response.groups[i] as IHueGroup)})
+        Object.keys(response.groups)
+          .map(i => {
+            let newGroup = response.groups[i] as IHueGroup
+            newGroup.id = i
+            this._state.groups.push(newGroup)
+          })
         Object.keys(response.lights)
           .map(i => {
-            let newLight:IHueLight = response.lights[i] as IHueLight
-            newLight.id = i;
+            let newLight = response.lights[i] as IHueLight
+            newLight.id = i
             this._state.lights.push(newLight)
           })
-        Object.keys(response.resourcelinks).map(i => {this._state.resourcelinks.push(response.resourcelinks[i] as IHueResourceLink)})
-        Object.keys(response.rules).map(i => {this._state.rules.push(response.rules[i] as IHueRule)})
-        Object.keys(response.scenes).map(i =>{this._state.scenes.push(response.scenes[i] as IHueScene)})
-        Object.keys(response.schedules).map(i =>{this._state.schedules.push(response.schedules[i] as IHueSchedule)})
-        Object.keys(response.sensors).map(i =>{this._state.sensors.push(response.sensors[i] as IHueSensor)})
-        this.notification.showSuccess("Philips Hue","connected successfully")
+        Object.keys(response.resourcelinks)
+          .map(i => {
+            let newResource = response.resourcelinks[i] as IHueResourceLink
+            newResource.id = i
+            this._state.resourcelinks.push(newResource)
+          })
+        Object.keys(response.rules)
+          .map(i => {
+            let newRule = response.rules[i] as IHueRule
+            newRule.id = i
+            this._state.rules.push(newRule)
+          })
+        Object.keys(response.scenes)
+          .map(i =>{
+            let newScene = response.scenes[i] as IHueScene
+            newScene.id = i
+            this._state.scenes.push(newScene)
+          })
+        Object.keys(response.schedules)
+          .map(i =>{
+            let newSchedule = response.schedules[i] as IHueSchedule
+            newSchedule.id = i
+            this._state.schedules.push(newSchedule)
+          })
+        Object.keys(response.sensors)
+          .map(i =>{
+            let newSensor = response.sensors[i] as IHueSensor
+            newSensor.id = i
+            this._state.sensors.push(newSensor)
+          })
 
-        console.log(response.lights);
+        this.notification.showSuccess("Philips Hue","connected successfully")
       },
       err => {
-        console.error(`[PH]Error requesting bridge state, ${err.error.data.message}`)
-        this.notification.showError("[PH]Error requesting bridge state", err.error.data.message)
+        console.error(`[PH]Error linking hub, ${err}`)
+        this.notification.showError("[PH]Error linking hub", `${err}`)
       })
-  }
-
-  //Turn light on/off
-  toggleLightOnOff(l: IHueLight) {
-    let body = {
-      on: !l.state.on
-    }
-    switch(body.on)
-    {
-      case true:
-        console.log(`Turning ${l.name} light on`)
-        this.changeLightState(l.id,body)
-        break;
-      case false:
-        console.log(`Turning ${l.name} light off`)
-        this.changeLightState(l.id,body)
-        break;
-    }
-
-    this.updateLight(l)
   }
   
   //Change light state
-  changeLightState(ID: string, body: object) {
+  private changeLightState(ID: string, body: object) {
     console.log(`Changing light state of light ID: ${ID}`)
 
     this._http.put(`${this.endpoint}/${this.username}/lights/${ID}/state`, JSON.stringify(body), this.httpOptions)
@@ -128,14 +157,14 @@ export class PhilipsHueService {
           console.log(res)
         },
         err => {
-          console.error(`[PH]Error updating light state, ${err.error.data.message}`)
-          this.notification.showError("[PH]Error updating light state", err.error.data.message)
+          console.error(`[PH]Error setting light state, ${err}`)
+          this.notification.showError("[PH]Error setting light state", `${err}`)
         }
       )
   }
     
   // Request a list of lights from hue bridge -> https://<bridge ip address>/api//<username>/lights
-  updateLight(l: IHueLight) {
+  private updateLight(l: IHueLight) {
     console.info("[PH]Updating light state")
 
     this._http.get(`${this.endpoint}/${this.username}/lights/${l.id}`, this.httpOptions)
@@ -149,26 +178,26 @@ export class PhilipsHueService {
           this.state.lights[index].id = oldID
         },
         err => {
-          console.error(`[PH]Error requesting lights, ${err.error.data.message}`)
-          this.notification.showError("Philips Hue", `Error requesting lights ${err.error.data.message}`)
+          console.error(`[PH]Error requesting light state, ${err}`)
+          this.notification.showError("[PH]Error requesting light state", `${err}`)
         }
       )
   }
 
   // Request the latest bridge config from hue bridge -> https://<bridge ip address>/api/<username>/config
-  // updateConfig() {
-  //   console.info("[PH]Requesting bridge config")
+  private updateConfig() {
+    console.info("[PH]Requesting bridge config")
 
-  //   this._http.get(`${this.endpoint}/${this.username}/config`)
-  //     .subscribe(
-  //       res =>{
-  //         this.state.config = res as IBridgeConfig
-  //         this.notification.showSuccess('Philips Hue', "config updated")
-  //       },
-  //       err => {
-  //         console.error(`[PH]Error requesting config, ${err.error.data.message}`)
-  //         this.notification.showError("[PH]Error requesting config", err.error.data.message)
-  //       }
-  //     )
-  // }
+    this._http.get(`${this.endpoint}/${this.username}/config`)
+      .subscribe(
+        res =>{
+          this.state.config = res as IBridgeConfig
+          this.notification.showSuccess('Philips Hue', "config updated")
+        },
+        err => {
+         console.error(`[PH]Error requesting config, ${err}`)
+         this.notification.showError("[PH]Error requesting config", `${err}`)
+        }
+      )
+  }
 }

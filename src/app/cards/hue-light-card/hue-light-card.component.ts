@@ -10,13 +10,22 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
 export class HueLightCardComponent implements OnInit {
   @Input('lightInput') light: IHueLight
 
+  changingLight:boolean = false
+
   constructor(private hue: PhilipsHueService) { }
 
   ngOnInit() {
   }
 
   turnOnOff() {
+    this.changingLight = true
+    
     this.hue.toggleLightOnOff(this.light)
+
+    setTimeout(() => {
+      this.changingLight = false
+      console.log("Test")
+    }, 2000);
   }
 
 }
