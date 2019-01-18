@@ -1,7 +1,7 @@
 <div class="roomPage">
     <div class="lightsRow" *ngIf='hue.state'>
       <div class="lightsList" *ngIf='hue.state.lights.length > 0'>
-        <h1>Lights</h1>
+        <h1>All Lights</h1>
         <hue-light-card *ngFor='let light of hue.state.lights; index as i' [lightInput]='i'></hue-light-card>
       </div>
       <div class="groupsList" *ngIf='hue.state.groups.length > 0'>
@@ -9,4 +9,4 @@
       </div>
     </div>
   </div>
-  <button (click)='logLights()'>Log lights to console</button>
+  <button (click)='logLights()'>Log state to console</button>

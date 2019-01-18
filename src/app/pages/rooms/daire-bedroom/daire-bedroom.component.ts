@@ -12,9 +12,4 @@ export class DaireBedroomComponent implements OnInit {
 
   ngOnInit() { }
 
-  logLights() {
-    console.log('--------------------------')
-    console.log(this.hue.state)
-  }
-
 }

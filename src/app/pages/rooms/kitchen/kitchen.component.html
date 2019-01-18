@@ -1,3 +1,7 @@
-<p>
-  kitchen works!
-</p>
+<div class='roomPage'>
+  <div class='cardsArea'>
+    <div class='lights' *ngIf='hue.state.groups'>
+      <hue-group-card [groupInput]='hue.getGroupIndexByName("Kitchen")'></hue-group-card>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,10 @@ export class RoomsComponent implements OnInit {
         path: 'hallway', 
         title: 'Hallway/ Landing'
     },
+    {
+        path: 'master-bedroom',
+        title: 'Master Bedroom'
+    },
     { 
         path: 'daire-bedroom', 
         title: 'Daires Bedroom'

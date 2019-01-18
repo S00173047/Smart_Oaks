@@ -53,6 +53,7 @@ import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom
 import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
 import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.component';
 import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.component';
+import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedroom.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,8 @@ import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.com
     DaireBedroomComponent,
     FloorPlanComponent,
     HueLightCardComponent,
-    HueGroupCardComponent
+    HueGroupCardComponent,
+    MasterBedroomComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { KitchenComponent } from './pages/rooms/kitchen/kitchen.component';
 import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom.component';
 import { HallwayComponent } from './pages/rooms/hallway/hallway.component';
 import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
+import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedroom.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'app' },
@@ -25,6 +26,7 @@ const routes: Routes = [
         { path: 'sitting-room', component: SittingRoomComponent },
         { path: 'kitchen', component: KitchenComponent },
         { path: 'hallway', component: HallwayComponent },
+        { path: 'master-bedroom', component: MasterBedroomComponent },
         { path: 'daire-bedroom', component: DaireBedroomComponent }
       ] },
       { path: 'cameras', component: CamerasComponent },

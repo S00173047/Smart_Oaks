@@ -1,4 +1,4 @@
-<div class="cardContainer">
+<div class="cardContainer" *ngIf='hue.state.groups[index]'>
   <div class="lightsList">
       <h1>{{hue.state.groups[index].name}}</h1>
       <div class='groupLights' *ngFor='let l of hue.state.groups[index].lights'>

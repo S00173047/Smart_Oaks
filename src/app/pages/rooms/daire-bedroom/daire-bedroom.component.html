@@ -1,3 +1,7 @@
-<div class="roomPage">
-  Daires room page
+<div class='roomPage'>
+  <div class='cardsArea'>
+    <div class='lights' *ngIf='hue.state.groups'>
+      <hue-group-card [groupInput]='hue.getGroupIndexByName("Daire bedroom")'></hue-group-card>
+    </div>
+  </div>
 </div>

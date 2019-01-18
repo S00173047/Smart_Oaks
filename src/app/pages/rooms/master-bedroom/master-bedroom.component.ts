@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
 
 @Component({
-  selector: 'hallway',
-  templateUrl: './hallway.component.html',
-  styleUrls: ['./hallway.component.scss']
+  selector: 'master-bedroom',
+  templateUrl: './master-bedroom.component.html',
+  styleUrls: ['./master-bedroom.component.scss']
 })
-export class HallwayComponent implements OnInit {
+export class MasterBedroomComponent implements OnInit {
 
   constructor(public hue: PhilipsHueService) { }
 

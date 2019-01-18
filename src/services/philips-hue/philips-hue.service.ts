@@ -63,6 +63,10 @@ export class PhilipsHueService {
   getLightIndexById(id: string): number {
     return this.state.lights.findIndex(lItem => {return lItem.id == id})
   }
+  
+  getGroupIndexByName(name: string) {
+    return this.state.groups.findIndex(g => {return g.name == name})
+  }
 
   //Request new username from hue hub
   connectToBridge() {
