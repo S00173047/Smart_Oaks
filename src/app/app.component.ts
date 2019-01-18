@@ -16,5 +16,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.cams.login();
+    this.hue.updateState();
   }
 }

@@ -158,6 +158,7 @@ export interface IHueSchedule {autodelete: false
 }
 
 export interface IHueLight{
+    id: string
     name: string
     capabiltiies: ILightCapabilities
     state: ILightState
