@@ -30,7 +30,6 @@
     "firebase": "^5.7.3",
     "jquery": "^3.3.1",
     "ngx-toastr": "^9.1.1",
-    "node-hue-api": "^2.4.4",
     "perfect-scrollbar": "^1.4.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
