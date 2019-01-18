@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
 
 @Component({
   selector: 'floor-plan',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FloorPlanComponent implements OnInit {
 
-  constructor() { }
+  constructor(public hue: PhilipsHueService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  logLights() {
+    console.log(this.hue.state)
   }
 
 }

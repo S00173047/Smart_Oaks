@@ -1,0 +1,35 @@
+@import '../../../variables.scss';
+.navTabsContainer {
+    background: $secondary;
+    .navTabs {
+        display: grid;
+        grid-template-columns: repeat(5, auto);
+
+        .tab {
+            height: 80px;
+            display: grid;
+            background: $secondary;
+            padding: 10px;
+            border: 1px solid darken($secondary,5);
+            
+            .title {
+                justify-self: center;
+                align-self: center;
+                font-size: 20px;
+                font-weight: 600;
+            }
+        }
+        .activeRoute {
+            background: $primary;
+            color: white;
+        }
+    }
+}
+@media only screen and (max-width: 990px) {
+    .navTabsContainer {
+        padding-top: 80px;
+        .navTabs {
+            grid-template-columns: repeat(auto-fit, minmax(200px,auto));
+        }
+    }
+}

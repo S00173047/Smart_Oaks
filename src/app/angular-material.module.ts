@@ -16,7 +16,8 @@ import {
   MatDialogModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatTabsModule
 } from "@angular/material";
 
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -37,7 +38,8 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatProgressSpinnerModule,
     MatSliderModule,
     DragDropModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTabsModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -55,7 +57,8 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatProgressSpinnerModule,
     MatSliderModule,
     DragDropModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTabsModule
   ]
 })
 export class AngularMaterialModule {}

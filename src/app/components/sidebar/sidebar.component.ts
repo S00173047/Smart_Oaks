@@ -2,44 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/services/notification/notification.service';
 import { AuthService } from 'src/services/auth/auth.service';
 import { Router } from '@angular/router';
-// import { NotificationService } from 'src/services/notifications/notification.service';
 
 declare const $: any;
 declare interface RouteInfo {
     path: string;
     title: string;
     icon: string;
-    class: string;
 }
 export const ROUTES: RouteInfo[] = [
     { 
         path: 'dashboard', 
         title: 'Dashboard', 
-        icon: 'view-dashboard', 
-        class: '' 
+        icon: 'view-dashboard'
     },
     { 
         path: 'rooms', 
         title: 'Rooms', 
-        icon: 'floor-plan', 
-        class: '' 
+        icon: 'floor-plan'
     },
     { 
         path: 'cameras', 
         title: 'Cameras', 
-        icon: 'cctv', 
-        class: '' 
+        icon: 'cctv'
     },
     { 
         path: 'downloads', 
         title: 'Downloads', 
-        icon: 'download', 
-        class: '' },
+        icon: 'download',
+    },
     { 
         path: 'users', 
         title: 'Users', 
-        icon: 'account-multiple', 
-        class: '' 
+        icon: 'account-multiple'
     }
 ];
 

@@ -104,7 +104,8 @@ export class PhilipsHueService {
           .map(i => {
             let newGroup = response.groups[i] as IHueGroup
             newGroup.id = i
-            this._state.groups.push(newGroup)
+            if(newGroup.type != "Entertainment")
+            { this._state.groups.push(newGroup) }
           })
         Object.keys(response.lights)
           .map(i => {

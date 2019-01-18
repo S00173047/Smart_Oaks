@@ -12,7 +12,6 @@ import { SittingRoomComponent } from './pages/rooms/sitting-room/sitting-room.co
 import { KitchenComponent } from './pages/rooms/kitchen/kitchen.component';
 import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom.component';
 import { HallwayComponent } from './pages/rooms/hallway/hallway.component';
-import { LandingComponent } from './pages/rooms/landing/landing.component';
 import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
 
 const routes: Routes = [
@@ -21,12 +20,11 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'rooms', component: RoomsComponent, children: [
-        { path: '', pathMatch: 'full', redirectTo: 'daire-bedroom'}, //Change later
+        { path: '', pathMatch: 'full', redirectTo: 'floor-plan'},
         { path: 'floor-plan', component: FloorPlanComponent },
         { path: 'sitting-room', component: SittingRoomComponent },
         { path: 'kitchen', component: KitchenComponent },
         { path: 'hallway', component: HallwayComponent },
-        { path: 'landing', component: LandingComponent },
         { path: 'daire-bedroom', component: DaireBedroomComponent }
       ] },
       { path: 'cameras', component: CamerasComponent },

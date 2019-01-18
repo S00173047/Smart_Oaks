@@ -1,0 +1,10 @@
+.lightsRow{
+    display: grid;
+    max-width: 100vw;
+    .lightsList {
+        justify-self: center;
+        padding: 10px;
+        border: 1px gray solid;
+        border-radius: 10px;
+    }
+}
