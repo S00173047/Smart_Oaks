@@ -1,17 +1,89 @@
 import { Type } from "@angular/compiler";
 
+//  IDK WHAT IM USING YET SO I MODELED ALMOST EVERYTHING
 export interface IPhilipsHueState {
-    config?: any,
-    groups?: any,
-    lights?: ILight[],
-    resourcelinks?: any,
+    config?: IBridgeConfig,
+    groups?: IHueGroup[],   //Groups of lights (rooms)
+    lights?: IHueLight[],   //Individual lights
+    resourcelinks?: IHueResourceLink[], //Behaviors
     rules?: any,
     scenes?: any,
     schedules?: any,
     sensors?: any
 }
 
-export interface ILight{
+export interface IBridgeConfig {
+    bridgeid: string,
+    name: string,
+    UTC?: Date,
+    backup?:
+    {
+        status: string,
+        errorcode: number
+    },
+    gateway: string,
+    internetservices:
+    {
+        internet: string,   //"Connected"
+        remoteaccess: string,
+        swupdate: string,
+        time: string,
+    },
+    ipaddress: string,
+    linkbutton: boolean,
+    localtime: Date,
+    mac: string,
+    modelid: string,
+    portalconnection: string,
+    portalservices: string,
+    portalstate: 
+    {
+        communication: string,
+        incoming: boolean,
+        outgoing: boolean,
+        signedon: boolean
+    }
+}
+
+export interface IHueGroup {
+    action:
+    {
+        alert: string,
+        bri: number,
+        colormode: string,
+        ct: number,
+        effect: string,
+        hue: number,
+        on: boolean,
+        sat: number,
+        xy:
+        {
+            [index: number]: number
+        }
+    },
+    class: string,
+    lights: string[],
+    name: string,
+    recycle: boolean,
+    sensors: string[],
+    state:
+    {
+        all_on: boolean,
+        any_on: false,   
+    },
+    type: string
+}
+
+export interface IHueResourceLink {
+    classid: number,
+    description: string,
+    links: string[],
+    name: string,
+    owner: string,
+    recycle: boolean,
+    type: string
+}
+export interface IHueLight{
     name: string,
     capabiltiies: ILightCapabilities,
     state: ILightState,
@@ -39,7 +111,7 @@ export interface ILightControl {
         {
             [index:number]: number[]
         }
-    }[],
+    },
     colorgamuttype?: string,
     ct:
     {
@@ -75,5 +147,5 @@ export interface ILightState {
     xy:
     {
         [index: number]: number
-    }[]
+    }
 }

@@ -4,7 +4,7 @@ import { env } from 'src/environments/environment';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from '../notification/notification.service';
-import { ILight, IPhilipsHueState } from 'src/model/philips-hue.model';
+import { IHueLight, IPhilipsHueState, IHueGroup, IBridgeConfig, IHueResourceLink } from 'src/model/philips-hue.model';
 import { database } from 'firebase';
 
 @Injectable({
@@ -28,8 +28,12 @@ export class PhilipsHueService {
 
   constructor(private _http: HttpClient, private notification: NotificationService) {
     this.username = env.hue_hub.username;
+
+    //initialise arrays in state
     this.state = {
-      lights: []
+      lights: [],
+      groups: [],
+      resourcelinks: []
     }
     this.getState();
   }
@@ -68,7 +72,12 @@ export class PhilipsHueService {
     this._http.get(`${this.endpoint}/${this.username}`)
       .subscribe(x => {
         let response = x as { config, groups, lights, resourcelinks, rules, scenes, schedules, sensors }
-        Object.keys(response.lights).map(i => {this.state.lights.push(response.lights[i] as ILight)})
+
+        this.state.config = response.config;
+        Object.keys(response.groups).map(i => {this.state.groups.push(response.groups[i] as IHueGroup)})
+        Object.keys(response.lights).map(i => {this.state.lights.push(response.lights[i] as IHueLight)})
+        Object.keys(response.resourcelinks).map(i => {this.state.resourcelinks.push(response.resourcelinks[i] as IHueResourceLink)})
+        // console.log(response.resourcelinks)
         this.notification.showSuccess("Philips Hue","connected successfully")
       }),
       err => {
@@ -83,7 +92,7 @@ export class PhilipsHueService {
     this._http.get(`${this.endpoint}/${this.username}/config`)
       .subscribe(
         res =>{
-          this.state.config = res
+          this.state.config = res as IBridgeConfig
           this.notification.showSuccess('Philips Hue', "config updated")
         },
         err => {
@@ -101,7 +110,7 @@ export class PhilipsHueService {
       .subscribe(
         res =>{
           let response = res;
-          this.state.lights = response as ILight[]
+          this.state.lights = response as IHueLight[]
           this.notification.showSuccess("Philips Hue", "lights updated")
         },
         err => {

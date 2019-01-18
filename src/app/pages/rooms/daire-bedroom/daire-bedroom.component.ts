@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
-import { ILight } from 'src/model/philips-hue.model';
 
 @Component({
   selector: 'daire-bedroom',
