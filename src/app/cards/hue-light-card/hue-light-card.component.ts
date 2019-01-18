@@ -8,11 +8,12 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
   styleUrls: ['./hue-light-card.component.scss']
 })
 export class HueLightCardComponent implements OnInit {
-  @Input('lightInput') light: IHueLight
+  // @Input('lightInput') light: IHueLight
+  @Input('lightInput') index: string
 
   changingLight:boolean = false
 
-  constructor(private hue: PhilipsHueService) { }
+  constructor(public hue: PhilipsHueService) { }
 
   ngOnInit() {
   }
@@ -20,12 +21,11 @@ export class HueLightCardComponent implements OnInit {
   turnOnOff() {
     this.changingLight = true
     
-    this.hue.toggleLightOnOff(this.light)
+    this.hue.toggleLightOnOff(this.hue.state.lights[this.index])
 
     setTimeout(() => {
       this.changingLight = false
-      console.log("Test")
-    }, 2000);
+    }, 1000);
   }
 
 }

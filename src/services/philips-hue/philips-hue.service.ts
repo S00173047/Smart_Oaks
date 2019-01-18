@@ -59,6 +59,11 @@ export class PhilipsHueService {
     this.updateLight(l)
   }
 
+  //Get light by ID on bridge
+  getLightIndexById(id: string): number {
+    return this.state.lights.findIndex(lItem => {return lItem.id == id})
+  }
+
   //Request new username from hue hub
   connectToBridge() {
     console.info("[PH]Connecting to bridge")
@@ -153,8 +158,7 @@ export class PhilipsHueService {
     this._http.put(`${this.endpoint}/${this.username}/lights/${ID}/state`, JSON.stringify(body), this.httpOptions)
       .subscribe(
         res => {
-          console.log("Response")
-          console.log(res)
+          //No action on success yet
         },
         err => {
           console.error(`[PH]Error setting light state, ${err}`)
@@ -173,7 +177,7 @@ export class PhilipsHueService {
           let response  = res as IHueLight | { success: { [state:string]: boolean|string|number }}
           const index: number = this.state.lights.findIndex(lItem => {return lItem == l})
           
-          let oldID = this.state.lights[index].id;
+          let oldID = this.state.lights[index].id
           this.state.lights[index] = response as IHueLight
           this.state.lights[index].id = oldID
         },

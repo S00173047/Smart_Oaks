@@ -2,10 +2,10 @@
   <div class="lightsRow" *ngIf='hue.state'>
     <div class="lightsList" *ngIf='hue.state.lights.length > 0'>
       <h1>Lights</h1>
-      <hue-light-card *ngFor='let light of hue.state.lights' [lightInput]='light'></hue-light-card>
+      <hue-light-card *ngFor='let light of hue.state.lights; index as i' [lightInput]='i'></hue-light-card>
     </div>
     <div class="groupsList" *ngIf='hue.state.groups.length > 0'>
-      <hue-group-card *ngFor='let group of hue.state.groups' [groupInput]='group'></hue-group-card>
+      <hue-group-card *ngFor='let group of hue.state.groups; index as i' [groupInput]='i'></hue-group-card>
     </div>
   </div>
 </div>

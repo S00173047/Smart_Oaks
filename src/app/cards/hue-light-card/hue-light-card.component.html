@@ -1,7 +1,7 @@
-<div class="cardContainer" *ngIf='light'>
-  <div class="title">{{light.name}}</div>
+<div class="cardContainer" *ngIf='hue.state.lights[index]'>
+  <div class="title">{{hue.state.lights[index].name}}</div>
   <div class="switch">
     <!-- {{light.state.on?'On':'Off'}} -->
-    <mat-slide-toggle [checked]='light.state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
+    <mat-slide-toggle [checked]='hue.state.lights[index].state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
   </div>
 </div>

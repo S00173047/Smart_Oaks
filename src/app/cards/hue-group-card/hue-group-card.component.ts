@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IHueGroup } from 'src/model/philips-hue.model';
+import { IHueGroup, IHueLight } from 'src/model/philips-hue.model';
 import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
 
 @Component({
@@ -8,13 +8,13 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
   styleUrls: ['./hue-group-card.component.scss']
 })
 export class HueGroupCardComponent implements OnInit {
-  @Input('groupInput') group: IHueGroup;
-  
+  // @Input('groupInput') group: IHueGroup;
+  @Input('groupInput') index: string;
+
   changingLights:boolean = false
 
-  constructor(private hue: PhilipsHueService) { }
+  constructor(public hue: PhilipsHueService) { }
 
   ngOnInit() {
-    // this.group
   }
 }
