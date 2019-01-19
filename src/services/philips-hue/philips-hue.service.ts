@@ -60,6 +60,13 @@ export class PhilipsHueService {
     this.updateState()
   }
 
+  setLightBrightness(l: IHueLight, b: number) {
+    let body = {bri: b}
+    console.log(`Setting brightness of ${l.name} to ${b}%`);
+    this.changeLightState(l.id, body)
+    this.updateState();
+  }
+
   //Request new username from hue hub
   connectToBridge() {
     console.info("[PH]Connecting to bridge")

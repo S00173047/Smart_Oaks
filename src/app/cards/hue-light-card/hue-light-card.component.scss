@@ -1,13 +1,21 @@
 .cardContainer {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: 20px;
     margin: 10px;
 
-    .title {
-        justify-self: left;
+    .mainCard {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-column-gap: 20px;
+
+        .dropIcon {
+            cursor: pointer;
+        }
     }
-    .switch {
-        justify-self: right;
+    
+    .dropdown {
+        width: 100%;
+
+        mat-slider {
+            width: 100%;
+        }
     }
 }

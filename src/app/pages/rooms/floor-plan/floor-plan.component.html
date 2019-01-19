@@ -1,12 +1,12 @@
 <div class="roomPage">
-    <div class="lightsRow" *ngIf='hue.state'>
-      <div class="lightsList" *ngIf='hue.state.lights.length > 0'>
-        <h1>All Lights</h1>
-        <hue-light-card *ngFor='let light of hue.state.lights; index as i' [lightInput]='i'></hue-light-card>
-      </div>
-      <div class="groupsList" *ngIf='hue.state.groups.length > 0'>
-        <hue-group-card *ngFor='let group of hue.state.groups; index as i' [groupInput]='i'></hue-group-card>
-      </div>
+  <div class="lightsRow" *ngIf='hue.state'>
+    <div class="lightsList" *ngIf='hue.state.lights.length > 0'>
+      <h1>All Lights</h1>
+      <hue-light-card *ngFor='let light of hue.state.lights; index as i' [lightInput]='i'></hue-light-card>
     </div>
+    <!-- <div class="groupsList" *ngIf='hue.state.groups.length > 0'>
+      <hue-group-card *ngFor='let group of hue.state.groups; index as i' [groupInput]='i'></hue-group-card>
+    </div> -->
   </div>
-  <button (click)='logLights()'>Log state to console</button>
+  <button (click)='logLights()' style='justify-self: center; align-self: flex-start'>Log state to console</button>
+</div>

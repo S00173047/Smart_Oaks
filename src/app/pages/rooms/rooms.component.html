@@ -1,6 +1,6 @@
 <div class='navTabsContainer'>
   <div class='navTabs'>
-    <div class='tab' *ngFor='let tab of menuItems' [routerLink]='tab.path' routerLinkActive='activeRoute'>
+    <div matRipple [matRippleCentered]='true' class='tab' *ngFor='let tab of menuItems' [routerLink]='tab.path' routerLinkActive='activeRoute'>
       <div class='title'>{{tab.title}}</div>
     </div>
   </div>

@@ -54,6 +54,7 @@ import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.componen
 import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.component';
 import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.component';
 import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedroom.component';
+import { LightModalComponent } from './modals/light-modal/light-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,8 @@ import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedr
     FloorPlanComponent,
     HueLightCardComponent,
     HueGroupCardComponent,
-    MasterBedroomComponent
+    MasterBedroomComponent,
+    LightModalComponent
   ],
   imports: [
     BrowserModule,

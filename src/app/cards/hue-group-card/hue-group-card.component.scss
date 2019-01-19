@@ -2,28 +2,30 @@
 .cardContainer {
     margin: 10px;
     display: grid;
+    padding: 10px;
+    border: 1px gray solid;
+    border-radius: 5px;
+    overflow: hidden;
     .lightsList {
         display: grid;
-        padding: 10px;
-        border: 1px gray solid;
-        border-radius: 5px;
-        overflow: hidden;
-        justify-self: center;
+        grid-row-gap: 10px;
 
         .headerRow {
             display: grid;
             grid-template-columns: repeat(2,auto);
             grid-column-gap: 20px;
-            // width: 100%;
             margin: 10px;
-            margin-top: 0px; margin-bottom: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
 
             .title {
-                font-size: 20px;
+                font-size: 26px;
+                font-weight: 600;
             }
         
             .switch {
                 justify-self: right;
+                align-self: center;
             }
         }
     }

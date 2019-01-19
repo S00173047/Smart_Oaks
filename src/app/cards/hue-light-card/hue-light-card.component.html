@@ -1,7 +1,14 @@
 <div class="cardContainer" *ngIf='hue.state.lights[index]'>
-  <div class="title">{{hue.state.lights[index].name}}</div>
-  <div class="switch">
-    <!-- {{light.state.on?'On':'Off'}} -->
-    <mat-slide-toggle [checked]='hue.state.lights[index].state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
+  <div class='mainCard'>
+    <div matRipple [matRippleCentered]='true' [matRippleUnbounded]='true' class='dropIcon' (click)='toggleDropdown()'>
+      <mat-icon>{{dropdownOpen?'keyboard_arrow_down':'keyboard_arrow_right'}}</mat-icon>
+    </div>
+    <div class="title">{{hue.state.lights[index].name}}</div>
+    <div class="switch">
+      <mat-slide-toggle [checked]='hue.state.lights[index].state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
+    </div>
+  </div>
+  <div class='dropdown' *ngIf='dropdownOpen'>
+    <mat-slider (change)='brightness.setValue($event.value)' [value]='hue.state.lights[index].state.bri' thumbLabel min='1' max='100' step='1' [disabled]='!hue.state.lights[index].state.on'></mat-slider>
   </div>
 </div>

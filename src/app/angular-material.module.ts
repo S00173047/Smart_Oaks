@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatSliderModule } from "@angular/material/slider";
 import {
   MatSidenavModule,
   MatToolbarModule,
@@ -17,7 +16,7 @@ import {
   MatInputModule,
   MatProgressSpinnerModule,
   MatSlideToggleModule,
-  MatTabsModule
+  MatSliderModule
 } from "@angular/material";
 
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -39,7 +38,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatSliderModule,
     DragDropModule,
     MatSlideToggleModule,
-    MatTabsModule
+    MatSliderModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -58,7 +57,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatSliderModule,
     DragDropModule,
     MatSlideToggleModule,
-    MatTabsModule
+    MatSliderModule
   ]
 })
 export class AngularMaterialModule {}
