@@ -12,7 +12,6 @@ import { database } from 'firebase';
 })
 export class PhilipsHueService {
   endpoint: string = `${env.hue_hub.endpoint}/api`;
-  connected: boolean = false;
   username: string = `${env.hue_hub.username}`;
   
   private _state: IPhilipsHueState = {
@@ -71,13 +70,12 @@ export class PhilipsHueService {
         res =>{
           let response = res[0] as { error?: { address, description, type }, success?: { username } }
           if(response.success)
-          { this.notification.showError("[PH]Hue failed to link",`${response.error.type}: ${response.error.description}`) }
-          else if(response.error)
           {
-            env.hue_hub.username = response.success.username;
-            this.connected = true;
+            this.username = response.success.username;
             this.notification.showSuccess("[PH]Hue linked successfully",`username: ${response.success.username}`)
           }
+          else if(response.error)
+          { this.notification.showError("[PH]Hue failed to link",`${response.error.type}: ${response.error.description}`) }
         },
         err => {
           console.error(`[PH]Error linking hub, ${err}`)
