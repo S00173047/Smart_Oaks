@@ -1,8 +1,11 @@
 <div class="cardContainer" *ngIf='hue.state.groups[index]'>
   <div class="lightsList">
-      <h1>{{hue.state.groups[index].name}}</h1>
-      <div class='groupLights' *ngFor='let l of hue.state.groups[index].lights'>
-        <hue-light-card [lightInput]='hue.getLightIndexById(l)'></hue-light-card>
-      </div>
+    <div class='headerRow'>
+      <div class='title'>{{hue.state.groups[index].name}}</div>
+      <mat-slide-toggle class="switch" [checked]='hue.state.groups[index].state.all_on' (toggleChange)='turnOnOff()' [disabled]='changingLights' ></mat-slide-toggle>    
+    </div>
+    <div class='groupLights' *ngFor='let l of hue.state.groups[index].lights'>
+      <hue-light-card [lightInput]='hue.getLightIndexById(l)'></hue-light-card>
+    </div>
   </div>
 </div>

@@ -17,4 +17,14 @@ export class HueGroupCardComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  turnOnOff() {
+    this.changingLights = true;
+    
+    this.hue.toggleGroupOnOff(this.hue.state.groups[this.index])
+
+    setTimeout(() => {
+      this.changingLights = false;
+    }, 2000);
+  }
 }
