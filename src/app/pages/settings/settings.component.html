@@ -4,23 +4,29 @@
 
     <div class="settingsPanel">
       <div class="title">Philips Hue</div>
-      <p>If the lights stop responding or receiving commands, try reconneting to the hub here</p>
+      <div>If the lights stop responding or receiving commands, try reconneting to the hub here</div>
       <div class="statusContainer">
         <div>Hue username: </div>
         <div>{{hue.username}}</div>
 
         <div>Hue status: </div>
         <div>
-          <div *ngIf='hue.connected' style="color: green">connected</div>
-          <div *ngIf='!hue.connected' style="color: orangered">unknown</div>
+          <div *ngIf='hue.state' style="color: green">connected</div>
+          <div *ngIf='!hue.state' style="color: orangered">unknown</div>
         </div>
+
+        <!-- <div>Refresh rate: </div>
+        <div style='display: grid; grid-template-columns: repeat(2,auto); grid-column-gap: 10px;'>
+          <input [formControl]="hueRefreshRate" type='number' class='form-control form-control-sm form-control-inline'/>
+          <button (click)='setHueRefreshRate()' class='btn btn-sm btn-primary'>Apply</button>
+        </div> -->
       </div>
       <button (click)='connectHue()' class="btn btn-primary btn-sm">Link Hue</button>
     </div>
 
     <div class="settingsPanel">
         <div class="title">Zoneminder</div>
-        <p>Zoneminder should login on startup but if it doesn't, you can force a login attempt here</p>
+        <div>Zoneminder should login on startup but if it doesn't, you can force a login attempt here</div>
         <div class="statusContainer">
           <div>Status: </div>
           <div>

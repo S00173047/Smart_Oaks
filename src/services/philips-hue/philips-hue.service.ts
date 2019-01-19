@@ -13,6 +13,9 @@ import { database } from 'firebase';
 export class PhilipsHueService {
   endpoint: string = `${env.hue_hub.endpoint}/api`;
   username: string = `${env.hue_hub.username}`;
+
+  private stateUpdating: boolean = false;
+  refreshRate: number = 60000;
   
   private _state: IPhilipsHueState = {
     lights: [],
@@ -37,7 +40,7 @@ export class PhilipsHueService {
 
   constructor(private _http: HttpClient, private notification: NotificationService) {
   }
-
+  
   //Get light index by ID on bridge
   getLightIndexById(id: string): number { return this.state.lights.findIndex(lItem => {return lItem.id == id}) }
   
@@ -47,20 +50,20 @@ export class PhilipsHueService {
   //Turn light on/off
   toggleLightOnOff(l: IHueLight) {
     let body = {on: !l.state.on}
-    console.log(`Turning ${l.name} ${(body.on)?('on'):('off')}`)
+    console.info(`Turning ${l.name} ${(body.on)?('on'):('off')}`)
     this.changeLightState(l.id,body)
   }
 
   //Toggle group on/off
   toggleGroupOnOff(g: IHueGroup) {
     let body = {on:!g.state.all_on}
-    console.log(`Turning ${g.name} lights ${(body.on)?('on'):('off')}`)
+    console.info(`Turning ${g.name} lights ${(body.on)?('on'):('off')}`)
     this.changeGroupState(g.id,body)
   }
 
   setLightBrightness(l: IHueLight, b: number) {
     let body = {bri: b}
-    console.log(`Setting brightness of ${l.name} to ${b}%`);
+    console.info(`Setting brightness of ${l.name} to ${b}%`);
     this.changeLightState(l.id, body)
   }
 
@@ -94,6 +97,8 @@ export class PhilipsHueService {
     this._http.get(`${this.endpoint}/${this.username}`)
       .subscribe(x => {
         let response = x as { config, groups, lights, resourcelinks, rules, scenes, schedules, sensors }
+        
+        this.stateUpdating = true;
 
         this.state.lights = []
         this.state.groups = []
@@ -148,6 +153,8 @@ export class PhilipsHueService {
             newSensor.id = i
             this._state.sensors.push(newSensor)
           })
+
+        this.stateUpdating = false;
       },
       err => {
         console.error(`[PH]Error getting hub state, ${err}`)
@@ -166,11 +173,9 @@ export class PhilipsHueService {
         }
       )
   }
-    
+
   //Change group state
   private changeGroupState(ID: string, body: object) {
-    console.log(ID);
-    console.log(body);
     this._http.put(`${this.endpoint}/${this.username}/groups/${ID}/action`, JSON.stringify(body), this.httpOptions)
       .subscribe(
         res => { this.updateState() },
@@ -183,7 +188,6 @@ export class PhilipsHueService {
   // Request a list of lights from hue bridge -> http://<bridge ip address>/api//<username>/lights
   private updateLight(l: IHueLight) {
     console.info("[PH]Updating light state")
-
     this._http.get(`${this.endpoint}/${this.username}/lights/${l.id}`, this.httpOptions)
       .subscribe(
         res =>{

@@ -2,7 +2,7 @@
   <div class="lightsList">
     <div class='headerRow'>
       <div class='title'>{{hue.state.groups[index].name}}</div>
-      <mat-slide-toggle class="switch" [checked]='hue.state.groups[index].state.all_on' (toggleChange)='turnOnOff()' [disabled]='changingLights' ></mat-slide-toggle>    
+      <mat-slide-toggle class="switch" [checked]='hue.state.groups[index].state.all_on' (toggleChange)='turnOnOff()' [disabled]='changingLights || hue.stateUpdating' ></mat-slide-toggle>    
     </div>
     <div class='groupLights'>
       <hue-light-card *ngFor='let l of hue.state.groups[index].lights' [lightInput]='hue.getLightIndexById(l)'></hue-light-card>

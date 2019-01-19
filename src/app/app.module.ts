@@ -4,6 +4,9 @@ import { HttpClientModule } from "@angular/common/http";
 
 import 'hammerjs';
 
+//Angular Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 //Firestore/Firebase/FireAuth
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -104,7 +107,9 @@ import { LightModalComponent } from './modals/light-modal/light-modal.component'
     }),
     NgxsModule.forRoot([
       UserState
-    ])
+    ]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     NotificationService,

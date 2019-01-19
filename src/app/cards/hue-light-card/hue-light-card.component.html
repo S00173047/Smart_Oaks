@@ -5,10 +5,10 @@
     </div>
     <div class="title">{{hue.state.lights[index].name}}</div>
     <div class="switch">
-      <mat-slide-toggle [checked]='hue.state.lights[index].state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight' ></mat-slide-toggle>
+      <mat-slide-toggle [checked]='hue.state.lights[index].state.on' (toggleChange)='turnOnOff()' [disabled]='changingLight || hue.stateUpdating' ></mat-slide-toggle>
     </div>
   </div>
   <div class='dropdown' *ngIf='dropdownOpen'>
-    <mat-slider (change)='brightness.setValue($event.value)' [value]='hue.state.lights[index].state.bri' thumbLabel min='1' max='100' step='1' [disabled]='!hue.state.lights[index].state.on'></mat-slider>
+    <mat-slider (change)='brightness.setValue($event.value)' [value]='hue.state.lights[index].state.bri' thumbLabel min='1' max='100' step='1' [disabled]='!hue.state.lights[index].state.on || hue.stateUpdating'></mat-slider>
   </div>
 </div>
