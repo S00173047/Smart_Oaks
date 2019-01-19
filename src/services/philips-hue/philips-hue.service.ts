@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { env } from 'src/environments/environment';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { interval, Subscription } from 'rxjs';
 import { NotificationService } from '../notification/notification.service';
 import { IHueLight, IPhilipsHueState, IHueGroup, IBridgeConfig, IHueResourceLink, IHueRule, IHueScene, IHueSchedule, IHueSensor } from 'src/model/philips-hue.model';
-import { database } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class PhilipsHueService {
   endpoint: string = `${env.hue_hub.endpoint}/api`;
   username: string = `${env.hue_hub.username}`;
 
-  private stateUpdating: boolean = false;
+  stateUpdating: boolean = false;
   refreshRate: number = 60000;
   
   private _state: IPhilipsHueState = {
@@ -41,6 +39,11 @@ export class PhilipsHueService {
   constructor(private _http: HttpClient, private notification: NotificationService) {
   }
   
+  //Auto-Refreshing
+  sub: Subscription;
+  startRefreshing() { this.sub = interval(this.refreshRate).subscribe(x => { this.updateState() })}
+  stopRefreshing() { this.sub.unsubscribe() }
+
   //Get light index by ID on bridge
   getLightIndexById(id: string): number { return this.state.lights.findIndex(lItem => {return lItem.id == id}) }
   

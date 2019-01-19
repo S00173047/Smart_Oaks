@@ -11,19 +11,13 @@ import { Observable, interval } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy{
-  sub:Observable<number> = interval(this.hue.refreshRate)
+export class AppComponent implements OnInit {
 
   constructor(private cams: CamerasService, private hue: PhilipsHueService)  { }
-
 
   ngOnInit() {
     this.cams.login();
     this.hue.updateState();
-    
-    this.sub.subscribe(x => {this.hue.updateState()} );
-  }
-
-  ngOnDestroy() {
+    this.hue.startRefreshing();
   }
 }

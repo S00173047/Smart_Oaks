@@ -15,11 +15,11 @@
           <div *ngIf='!hue.state' style="color: orangered">unknown</div>
         </div>
 
-        <!-- <div>Refresh rate: </div>
+        <div>Refresh rate(ms): </div>
         <div style='display: grid; grid-template-columns: repeat(2,auto); grid-column-gap: 10px;'>
           <input [formControl]="hueRefreshRate" type='number' class='form-control form-control-sm form-control-inline'/>
           <button (click)='setHueRefreshRate()' class='btn btn-sm btn-primary'>Apply</button>
-        </div> -->
+        </div>
       </div>
       <button (click)='connectHue()' class="btn btn-primary btn-sm">Link Hue</button>
     </div>

@@ -23,6 +23,8 @@ export class SettingsComponent implements OnInit {
   setHueRefreshRate () {
     this.hue.refreshRate = this.hueRefreshRate.value;
     this.hueRefreshRate.setValue(this.hue.refreshRate)
+    this.hue.stopRefreshing();
+    this.hue.startRefreshing();
   }
 
   connectZoneminder() {
