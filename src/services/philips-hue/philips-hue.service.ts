@@ -49,7 +49,6 @@ export class PhilipsHueService {
     let body = {on: !l.state.on}
     console.log(`Turning ${l.name} ${(body.on)?('on'):('off')}`)
     this.changeLightState(l.id,body)
-    this.updateState()
   }
 
   //Toggle group on/off
@@ -57,14 +56,12 @@ export class PhilipsHueService {
     let body = {on:!g.state.all_on}
     console.log(`Turning ${g.name} lights ${(body.on)?('on'):('off')}`)
     this.changeGroupState(g.id,body)
-    this.updateState()
   }
 
   setLightBrightness(l: IHueLight, b: number) {
     let body = {bri: b}
     console.log(`Setting brightness of ${l.name} to ${b}%`);
     this.changeLightState(l.id, body)
-    this.updateState();
   }
 
   //Request new username from hue hub
