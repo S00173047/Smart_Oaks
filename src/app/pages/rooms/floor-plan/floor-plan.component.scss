@@ -1,7 +1,13 @@
 .roomPage {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    // grid-template-columns: repeat(4,1fr);
     
+    .map {
+        justify-self: center;
+        .floor {
+        }
+    }
+
     .lightsRow{
         .lightsList {
             padding: 10px;

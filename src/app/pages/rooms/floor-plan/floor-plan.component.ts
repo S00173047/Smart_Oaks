@@ -7,6 +7,7 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
   styleUrls: ['./floor-plan.component.scss']
 })
 export class FloorPlanComponent implements OnInit {
+  topFloor: boolean = false;
 
   constructor(public hue: PhilipsHueService) { }
 
@@ -16,4 +17,5 @@ export class FloorPlanComponent implements OnInit {
     console.log(this.hue.state)
   }
 
+  switchFloor() { this.topFloor = !this.topFloor }
 }
