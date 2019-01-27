@@ -58,6 +58,7 @@ import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.com
 import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.component';
 import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedroom.component';
 import { LightModalComponent } from './modals/light-modal/light-modal.component';
+import { MapComponent } from './pages/rooms/floor-plan/map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,8 @@ import { LightModalComponent } from './modals/light-modal/light-modal.component'
     HueLightCardComponent,
     HueGroupCardComponent,
     MasterBedroomComponent,
-    LightModalComponent
+    LightModalComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

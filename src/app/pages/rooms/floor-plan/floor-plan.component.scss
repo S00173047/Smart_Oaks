@@ -2,9 +2,82 @@
     display: grid;
     // grid-template-columns: repeat(4,1fr);
     
-    .map {
+    .mapContainer {
         justify-self: center;
-        .floor {
+        display: grid;
+        grid-template-areas: 'main';
+        border: 1px red solid;
+
+        width: 338px;
+        height: 684px;
+
+        .map {
+            grid-area: main;
+            border: 1px blue solid;
+            .floor {
+            }
+        }
+
+        .mapGrid {
+            margin: 6px;
+            grid-area: main;
+            .bottomFloor {
+                display: grid;
+                // grid-template-rows: 76px 252px 21px 29px 242px;
+                grid-template-rows: 76px 180px 70px 53px 242px;
+    
+                // grid-template-rows: 76px 80px 102px 70px 21px 29px 242px;
+                // grid-template-columns: 79px 76px 172px;
+                // grid-template-areas: "utility utility garden"
+                //                      "kitTop  kitTop  garden"
+                //                      "kitMid  kitMid  kitMid"
+                //                      "toilet  kitBot  kitBot"
+                //                      "toilet  hallTop stairs"
+                //                      "hallBot hallTop stairs"
+                //                      "hallBot livRoom livRoom";
+                .utility {
+                    width: 152px; height: 74px;
+                    border: 1px green solid;
+                }
+                .kitchenSvg {
+                    // height: 252px;
+                    width: 100%;
+                }
+            }
+            // .kitchenTop {
+            //     grid-area: kitTop;
+            //     border: 1px blue solid;
+            // }
+            // .kitchenMid {
+            //     grid-area: kitMid;
+            //     border: 1px blue solid;
+            // }
+            // .kitchenBottom {
+            //     grid-area: kitBot;
+            //     border: 1px blue solid;
+            // }
+            // .toilet {
+            //     grid-area: toilet;
+            //     border: 1px red solid;
+            // }
+            // .stairs {
+            //     grid-area: stairs;
+            //     border: 1px green solid;
+            // }
+            // .hallTop {
+            //     grid-area: hallTop;
+            //     border: 1px yellow solid;
+            // }
+            // .hallBot {
+            //     grid-area: hallBot;
+            //     border: 1px yellow solid;
+            //     margin-right: 5px;
+            // }
+            // .livingRoom {
+            //     grid-area: livRoom;
+            //     border: 1px blue solid;
+            //     margin-left: -5px;
+            // }
         }
     }
 

@@ -1,0 +1,67 @@
+@import '../../../../../variables.scss';
+.roomPicker {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  svg {
+    max-height: 80vh;
+    margin-bottom: 50px;
+    g {
+      height: auto;
+
+      .stroked-element{
+        // fill: silver;
+        // stroke: darkgray;
+        fill: darkgray;
+        stroke-width: 2;
+        // opacity: 0.1;
+      }
+
+      .floor-border {
+        stroke: $accent;
+        stroke-width: 2;
+        fill: #eaeaea;
+      }
+
+      .room-bg {
+        fill: #eaeaea;
+        stroke: transparent;
+        cursor: pointer;
+        stroke-width: 2px;
+      }
+      .room-border {  //Room border
+        stroke-width: 4px;
+        stroke: $accent;
+        stroke-miterlimit: 10;
+        fill: none;
+      }
+      .room-text {  //Unselected room text
+        cursor: pointer;
+        user-select: none;
+        pointer-events: none;
+        font-weight: 600;
+        fill: $accent;
+      }
+    }
+    
+    .stairs {
+      .room-bg {
+        fill: #d3ffd4;
+      }
+    }
+      
+    .selected-room {
+      .room-bg {
+        fill: lightblue;
+      }
+      .room-text {
+        fill: $primary;
+        font-weight: 700;
+      }
+      .room-border {
+        stroke-width: 4px;
+        stroke: $primary;
+      }
+    }  
+  }
+}

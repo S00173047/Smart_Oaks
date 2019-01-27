@@ -74,7 +74,9 @@ export class PhilipsHueService {
   connectToBridge() {
     console.info("[PH]Connecting to bridge")
 
-    let body = {"devicetype": env.hue_hub.app_name}
+    let body = {
+      "devicetype": env.hue_hub.app_name
+    }
     this._http.post(`${this.endpoint}`, body, this.httpOptions)
       .subscribe(
         res =>{
