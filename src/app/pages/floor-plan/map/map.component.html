@@ -1,14 +1,14 @@
 <div class="roomPicker">
-  <svg viewBox="0 0 400 815" preserveAspectRatio="xMidYMid" *ngIf='ready'>
+  <svg viewBox="0 0 400 815" preserveAspectRatio="xMidYMid">
     <defs>
       <filter id="f2" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur result="blurOut" in="StrokePaint" stdDeviation="3"/>
       </filter>
     </defs>
 
-    <g>
+    <!-- <g>
       <path class="stroked-element" [attr.d]="strokedArea.d" *ngFor="let strokedArea of roomSvg[selectedFloor].stokedAreas"/>
-    </g>
+    </g> -->
 
     <g>
       <path class="floor-border" [attr.d]="roomSvg[selectedFloor].border.d" />

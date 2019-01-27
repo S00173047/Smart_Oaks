@@ -37,7 +37,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { UserState } from 'src/redux/states/user.state';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CamerasComponent } from './pages/cameras/cameras.component';
-import { RoomsComponent } from './pages/rooms/rooms.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -49,16 +48,17 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
 import { SettingsComponent } from './pages/settings/settings.component';
 import { NotificationService } from 'src/services/notification/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SittingRoomComponent } from './pages/rooms/sitting-room/sitting-room.component';
-import { KitchenComponent } from './pages/rooms/kitchen/kitchen.component';
-import { HallwayComponent } from './pages/rooms/hallway/hallway.component';
-import { DaireBedroomComponent } from './pages/rooms/daire-bedroom/daire-bedroom.component';
-import { FloorPlanComponent } from './pages/rooms/floor-plan/floor-plan.component';
+import { SittingRoomComponent } from './pages/floor-plan/rooms/sitting-room/sitting-room.component';
+import { KitchenComponent } from './pages/floor-plan/rooms/kitchen/kitchen.component';
+import { HallwayComponent } from './pages/floor-plan/rooms/hallway/hallway.component';
+import { DaireBedroomComponent } from './pages/floor-plan/rooms/daire-bedroom/daire-bedroom.component';
+import { FloorPlanComponent } from './pages/floor-plan/floor-plan.component';
 import { HueLightCardComponent } from './cards/hue-light-card/hue-light-card.component';
 import { HueGroupCardComponent } from './cards/hue-group-card/hue-group-card.component';
-import { MasterBedroomComponent } from './pages/rooms/master-bedroom/master-bedroom.component';
+import { MasterBedroomComponent } from './pages/floor-plan/rooms/master-bedroom/master-bedroom.component';
 import { LightModalComponent } from './modals/light-modal/light-modal.component';
-import { MapComponent } from './pages/rooms/floor-plan/map/map.component';
+import { MapComponent } from './pages/floor-plan/map/map.component';
+import { LandingComponent } from './pages/floor-plan/rooms/landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,6 @@ import { MapComponent } from './pages/rooms/floor-plan/map/map.component';
     SidebarComponent,
     DashboardComponent,
     CamerasComponent,
-    RoomsComponent,
     DownloadsComponent,
     UsersComponent,
     LoginComponent,
@@ -85,7 +84,8 @@ import { MapComponent } from './pages/rooms/floor-plan/map/map.component';
     HueGroupCardComponent,
     MasterBedroomComponent,
     LightModalComponent,
-    MapComponent
+    MapComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

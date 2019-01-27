@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'house-map',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  ready:boolean = false;
+  @Output() selectEmit: EventEmitter<number> = new EventEmitter();
   selectedRoom: null;
   sortedRooms = [];
   selectedFloor: number = 0;
@@ -139,7 +139,6 @@ export class MapComponent implements OnInit {
   }
 
   private sortRooms() {
-    this.ready = true;
     this.sortedRooms = this.roomSvg[this.selectedFloor].rooms.slice(0).sort((a, b) => {
       if (a.id === this.selectedRoom) {
         return 1;
@@ -153,12 +152,15 @@ export class MapComponent implements OnInit {
 
   selectRoom(roomNumber) {
     if(roomNumber == '6' || roomNumber == '14')
-    { this.changeFloor() }
+    {
+      this.changeFloor()
+    }
     else
     {
+      this.selectEmit.emit(roomNumber);
       this.selectedRoom = roomNumber;
-      this.sortRooms();
     }
+    this.sortRooms()
   }
 
   changeFloor() {
@@ -170,6 +172,5 @@ export class MapComponent implements OnInit {
         this.selectedFloor = 0;
         break;
     }
-    this.selectRoom(this.selectedRoom)
   }
 }
