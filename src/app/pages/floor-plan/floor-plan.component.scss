@@ -1,6 +1,6 @@
 .pageContainer {
     display: grid;
-    grid-template-columns: repeat(2,auto);
+    grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
 }
 
