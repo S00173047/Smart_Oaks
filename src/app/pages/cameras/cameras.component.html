@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div *ngIf='zoneminder.loggedIn'>
       <div class="monitorsList" *ngIf='zoneminder.monitors.length > 0'>
-        <camera-card *ngFor='let monitor of zoneminder.monitors;' [camera]='monitor'></camera-card>
+        <camera-card *ngFor='let monitor of zoneminder.monitors;' [camera]='monitor' [feedSrc]='getFeedSrc(monitor)'></camera-card>
       </div>
     </div>
     <div *ngIf='!zoneminder.loggedIn' class="noLogin">

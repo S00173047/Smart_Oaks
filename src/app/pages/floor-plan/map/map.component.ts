@@ -64,7 +64,7 @@ export class MapComponent implements OnInit {
           name: { text: 'Second Floor', x: 265, y: 430 },
           area: { d: 'M190,395 l0,60 l205,0 l0,-60Z' },
           border: { d: 'M190,395 l205,0 l0,60 l-205,0' },
-       },
+        }
       ]
     },
     1: {

@@ -13,11 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class CamerasComponent implements OnInit {
   
-  constructor(private zoneminder: CamerasService, private store: Store) { }
+  constructor(public zoneminder: CamerasService, private store: Store) { }
 
   ngOnInit() {
-    // this.store.dispatch(new RequestZoneminderAuth());
-
     this.loginCheck(1);
   }
 
@@ -28,7 +26,7 @@ export class CamerasComponent implements OnInit {
       {
           this.loginCheck(i+1)
       }
-      else
+      else if (i < 11 && this.zoneminder.loggedIn)
       {
         console.log("Logged in succesfully")
         this.postLogin();
@@ -38,5 +36,9 @@ export class CamerasComponent implements OnInit {
 
   postLogin() {
     this.zoneminder.getMonitors();
+  }
+
+  getFeedSrc(monitor: IMonitor) {
+    return `${env.zoneminder.endpoint}/cgi-bin-zm/nph-zms?scale=100&width=640px&height=368px&mode=jpeg&maxfps=30&monitor=${monitor.Monitor.Id}&${this.zoneminder.credentials}`;
   }
 }
