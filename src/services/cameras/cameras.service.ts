@@ -39,7 +39,8 @@ export class CamerasService {
           {
             this.loggedIn = true;
             this.credentials = response.credentials;
-            this.notification.showSuccess("Zoneminder logged in successfully");
+            console.log("[ZM]Logged in successfully")
+            this.notification.showSuccess("[ZM]Logged in successfully");
           }
         },
         err => {

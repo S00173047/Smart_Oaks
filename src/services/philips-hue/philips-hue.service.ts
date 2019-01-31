@@ -66,7 +66,7 @@ export class PhilipsHueService {
 
   setLightBrightness(l: IHueLight, b: number) {
     let body = {bri: b}
-    console.info(`Setting brightness of ${l.name} to ${b}%`);
+    console.info('%c[PH]','color: purple',`Setting brightness of ${l.name} to ${Math.round((b/255)*100,)}%`);
     this.changeLightState(l.id, body)
   }
 
@@ -90,14 +90,14 @@ export class PhilipsHueService {
           { this.notification.showError("[PH]Hue failed to link",`${response.error.type}: ${response.error.description}`) }
         },
         err => {
-          console.error(`[PH]Error linking hub, ${err}`)
+          console.error('%c[PH]','color: purple',`Error linking hub, ${err}`)
           this.notification.showError("[PH]Error linking hub", `${err}`)
         })
   }
 
   // Request the latest bridge state from the hue bridge -> http://<bridge ip address>/api/<username>
   updateState() {
-    console.info("[PH]Requesting bridge state")
+    console.info('%c[PH]','color: purple',`Requesting bridge state`)
 
     this._http.get(`${this.endpoint}/${this.username}`)
       .subscribe(x => {
@@ -162,7 +162,7 @@ export class PhilipsHueService {
         this.stateUpdating = false;
       },
       err => {
-        console.error(`[PH]Error getting hub state, ${err}`)
+        console.error('%c[PH]','color: purple',`Error getting hub state, ${err}`)
         this.notification.showError("[PH]Error getting hub state", `${err}`)
       })
   }
@@ -173,7 +173,7 @@ export class PhilipsHueService {
       .subscribe(
         res => { this.updateState() },
         err => {
-          console.error(`[PH]Error setting light state, ${err}`)
+          console.error('%c[PH]','color: purple',`Error setting light state, ${err}`)
           this.notification.showError("[PH]Error setting light state", `${err}`)
         }
       )
@@ -185,14 +185,14 @@ export class PhilipsHueService {
       .subscribe(
         res => { this.updateState() },
         err => {
-          console.error(`[PH]Error setting group state, ${err}`)
+          console.error('%c[PH]','color: purple',`Error setting group state, ${err}`)
           this.notification.showError("[PH]Error setting group state", `${err}`)
         }
       )
   }
   // Request a list of lights from hue bridge -> http://<bridge ip address>/api//<username>/lights
   private updateLight(l: IHueLight) {
-    console.info("[PH]Updating light state")
+    console.info('%c[PH]','color: purple',`Updating light state`)
     this._http.get(`${this.endpoint}/${this.username}/lights/${l.id}`, this.httpOptions)
       .subscribe(
         res =>{
@@ -204,7 +204,7 @@ export class PhilipsHueService {
           this.state.lights[index].id = oldID
         },
         err => {
-          console.error(`[PH]Error requesting light state, ${err}`)
+          console.error('%c[PH]','color: purple',`Error requesting light state, ${err}`)
           this.notification.showError("[PH]Error requesting light state", `${err}`)
         }
       )
@@ -212,7 +212,7 @@ export class PhilipsHueService {
   
   // Request a list of groups from hue bridge -> http://<bridge ip address>/api//<username>/groups
   private updateGroup(g: IHueGroup) {
-    console.info("[PH]Updating group state")
+    console.info('%c[PH]','color: purple',`Updating group state`)
 
     this._http.get(`${this.endpoint}/${this.username}/groups/${g.id}`, this.httpOptions)
       .subscribe(
@@ -225,7 +225,7 @@ export class PhilipsHueService {
           this.state.groups[index].id = oldID
         },
         err => {
-          console.error(`[PH]Error requesting group state, ${err}`)
+          console.error('%c[PH]','color: purple',`Error requesting group state, ${err}`)
           this.notification.showError("[PH]Error requesting group state", `${err}`)
         }
       )
@@ -233,7 +233,7 @@ export class PhilipsHueService {
 
   // Request the latest bridge config from hue bridge -> https://<bridge ip address>/api/<username>/config
   private updateConfig() {
-    console.info("[PH]Requesting bridge config")
+    console.info('%c[PH]','color: purple',`Requesting bridge config`)
 
     this._http.get(`${this.endpoint}/${this.username}/config`)
       .subscribe(
@@ -242,7 +242,7 @@ export class PhilipsHueService {
           this.notification.showSuccess('Philips Hue', "config updated")
         },
         err => {
-         console.error(`[PH]Error requesting config, ${err}`)
+         console.error('%c[PH]','color: purple',`Error requesting config, ${err}`)
          this.notification.showError("[PH]Error requesting config", `${err}`)
         }
       )

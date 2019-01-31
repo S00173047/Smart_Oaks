@@ -28,7 +28,6 @@ export class CamerasComponent implements OnInit {
       }
       else if (i < 11 && this.zoneminder.loggedIn)
       {
-        console.log("Logged in succesfully")
         this.postLogin();
       }
     }, 500)

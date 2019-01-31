@@ -17,11 +17,12 @@ export class AppComponent implements OnInit {
   constructor(
     private cams: CamerasService,
     private hue: PhilipsHueService,
-    private thermostat: NetatmoService)  { }
+    private netatmo: NetatmoService)  { }
 
   ngOnInit() {
     this.cams.login();
     this.hue.updateState();
     this.hue.startRefreshing();
+    this.netatmo.startTokenRefreshing();
   }
 }

@@ -39,4 +39,14 @@ export class HueLightCardComponent implements OnInit {
   }
 
   toggleDropdown() { this.dropdownOpen = !this.dropdownOpen }
+
+  sliderLabel(value: number | null) {
+    if (!value) {
+      return '0%';
+    }
+    else
+    {
+      return Math.round((value/255)*100) + '%'
+    }
+  }
 }
