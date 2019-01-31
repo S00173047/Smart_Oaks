@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service';
 import { NotificationService } from 'src/services/notification/notification.service';
 import { Observable, interval } from 'rxjs';
+import { NetatmoService } from 'src/services/netatmo/netatmo.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,10 @@ import { Observable, interval } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private cams: CamerasService, private hue: PhilipsHueService)  { }
+  constructor(
+    private cams: CamerasService,
+    private hue: PhilipsHueService,
+    private thermostat: NetatmoService)  { }
 
   ngOnInit() {
     this.cams.login();
