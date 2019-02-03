@@ -1,0 +1,40 @@
+@import '../../../variables.scss';
+.cardContainer {
+    display: grid;
+    margin: 10px;
+
+    .cardItem {
+        justify-self: center;
+        padding: 20px;
+        border: 1px $accent solid;
+        border-radius: 5px;
+        display: grid;
+        grid-column-gap: 20px;
+        grid-template-areas: 'temp bat';
+    
+        .battery { 
+            grid-area: bat;
+            align-self: center;
+        }
+        .temperature {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-area: temp;
+            
+            .value {
+                margin: 0; padding: 0;
+                vertical-align: middle
+            }
+    
+            .arrow {
+                display: grid;
+                align-items: center;
+            }
+            .arrow:hover {
+                cursor: pointer;
+                color: $primary;
+            }
+        }
+    }
+}

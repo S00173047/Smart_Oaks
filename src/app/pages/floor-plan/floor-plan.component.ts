@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class FloorPlanComponent implements OnInit {
   rooms = {
-    // 1: 'utility',
+    1: 'utility',
     2: 'kitchen',
     // 3: 'toilet',
     4: 'hallway',

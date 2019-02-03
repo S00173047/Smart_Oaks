@@ -59,6 +59,10 @@ import { MasterBedroomComponent } from './pages/floor-plan/rooms/master-bedroom/
 import { LightModalComponent } from './modals/light-modal/light-modal.component';
 import { MapComponent } from './pages/floor-plan/map/map.component';
 import { LandingComponent } from './pages/floor-plan/rooms/landing/landing.component';
+import { WeatherCardComponent } from './cards/weather-card/weather-card.component';
+import { ThermostatCardComponent } from './cards/thermostat-card/thermostat-card.component';
+import { UtilityComponent } from './pages/floor-plan/rooms/utility/utility.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +89,10 @@ import { LandingComponent } from './pages/floor-plan/rooms/landing/landing.compo
     MasterBedroomComponent,
     LightModalComponent,
     MapComponent,
-    LandingComponent
+    LandingComponent,
+    WeatherCardComponent,
+    ThermostatCardComponent,
+    UtilityComponent
   ],
   imports: [
     BrowserModule,

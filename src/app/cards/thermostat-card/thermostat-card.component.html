@@ -1,0 +1,17 @@
+<div class='cardContainer'>
+  <!-- <button (click)='test()'>test</button> -->
+  <div class='cardItem'>
+    <div class='battery' (click)='test()'>
+      <mat-icon>battery_full</mat-icon>{{(battery/4100)*100 | number: '1.0-0'}}%
+    </div>
+    <div class='temperature'>
+      <div class='arrow' (click)='changeTemp(1)'>
+        <mat-icon>keyboard_arrow_up</mat-icon>
+      </div>
+      <div class='value'>{{temp.target}} ({{temp.measured}})°C</div>
+      <div class='arrow' (click)='changeTemp(-1)'>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

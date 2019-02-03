@@ -14,6 +14,7 @@ import { HallwayComponent } from './pages/floor-plan/rooms/hallway/hallway.compo
 import { FloorPlanComponent } from './pages/floor-plan/floor-plan.component';
 import { MasterBedroomComponent } from './pages/floor-plan/rooms/master-bedroom/master-bedroom.component';
 import { LandingComponent } from './pages/floor-plan/rooms/landing/landing.component';
+import { UtilityComponent } from './pages/floor-plan/rooms/utility/utility.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'app' },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'rooms', component: FloorPlanComponent, children: [
+        { path: 'utility', component: UtilityComponent },
         { path: 'sitting-room', component: SittingRoomComponent },
         { path: 'kitchen', component: KitchenComponent },
         { path: 'hallway', component: HallwayComponent },

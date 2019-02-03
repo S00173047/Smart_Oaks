@@ -1,3 +1,4 @@
+//Weather station model
 export interface INAWeatherStation {
     mark?: number
     measures?: {
@@ -25,72 +26,72 @@ export interface INARainMeasure {
     rain_timeutc?: string //Timestamp of when it last rained
 }
 
-export interface INAThermostat {
-    firmware?: number
-    last_bilan?: {
-        y: number
-        m: number
-    }
-    last_plug_seen: number
-    last_setup: number
-    last_status_store: number
+//Home Model
+export interface INAHome {
+    id: string
+    name?: string
+    altitude?: number
+    coordinates?: number[]
+    country?: string
+    timezone?: string
+    rooms: INARoom[];
     modules: INAModule[]
-    place: {
-        altitude: number
-        city: string
-        country: string
-        improveLocProposed: true
-        location: number[]
-        timezone: string
-        trust_location: boolean
-    }
-    plug_connected_boiler: number
-    station_name: string
-    type: string
-    udp_conn: boolean
-    wifi_status: number
-    _id: string //MAC Address of device
+    therm_schedules?: INASchedule[]
+    therm_setpoint_default_duration?: number
+    schedules?: INASchedule[]
+    therm_mode?: string
+}
+
+export interface INARoom {
+    id: string
+    name?: string
+    type?: string
+    module_ids?: string[]
+
+    reachable?: boolean
+    therm_measured_temperature?: number
+    therm_setpoint_temperature?: number
+    therm_setpoint_mode?: string
+    therm_setpoint_start_time?: string
+    therm_setpoint_end_time?: string
 }
 
 export interface INAModule {
-    anticipating: boolean
-    battery_percent: number
-    battery_vp: number
-    event_history: {
-        boiler_not_responding_events: { k: number }[]
-        boiler_responding_events: { k: number }[]
-    }
-    firmware: number
-    last_message: number
-    last_therm_seen: number
-    measured: {
-        setpoint_temp: number
-        temperature: number
-        time: number
-    }
-    module_name: string
-    rf_status: number
-    setpoint: {
-        setpoint_mode: string
-    }
-    therm_orientation: number
-    therm_program_list: {
-        default: boolean
-        name: string
-        program_id: string
-        selected: boolean
-        timetable: {
-            m_offset: number
-            id: number
-        }[]
-        zones: {
-            id: number
-            name: string
-            temp: number
-            type: number
-        }[]
-    }[]
-    therm_relay_cmd: number
+    id: string
     type: string
-    _id: string
+    name?: string
+    modules_bridged?: string
+    room_id?: string
+    bridge?: string
+
+    reachable?: boolean
+    rf_strength?: number
+    wifi_strength?: number
+    battery_level?: number
+    battery_state?: string
+}
+
+export interface INASchedule {
+    timetable: {
+        zone_id: number
+        m_offset: number
+    }[]
+    zones: INAZone[]
+    name: string
+    default: boolean
+    away_temp: number
+    hg_temp: number
+    id: string
+    selected: boolean
+    type: string
+}
+
+export interface INAZone {
+    name: string
+    id: number
+    type: number
+    rooms_temp: {
+        room_id: string
+        temp: number
+    }[]
 }

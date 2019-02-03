@@ -1,6 +1,7 @@
 <div class='roomPage'>
   <div class='cardsArea'>
     <div class='lights' *ngIf='hue.state.groups'>
+      <thermostat-card></thermostat-card>
       <hue-group-card [groupInput]='hue.getGroupIndexByName("Hallway")'></hue-group-card>
     </div>
   </div>
