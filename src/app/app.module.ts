@@ -62,6 +62,10 @@ import { LandingComponent } from './pages/floor-plan/rooms/landing/landing.compo
 import { WeatherCardComponent } from './cards/weather-card/weather-card.component';
 import { ThermostatCardComponent } from './cards/thermostat-card/thermostat-card.component';
 import { UtilityComponent } from './pages/floor-plan/rooms/utility/utility.component';
+import { AuthService } from 'src/services/auth/auth.service';
+import { GoogleCastService } from 'src/services/google-cast/google-cast.service';
+import { NetatmoService } from 'src/services/netatmo/netatmo.service';
+import { UserService } from 'src/services/user-storage/user.service';
 
 @NgModule({
   declarations: [
@@ -121,9 +125,13 @@ import { UtilityComponent } from './pages/floor-plan/rooms/utility/utility.compo
     ReactiveFormsModule
   ],
   providers: [
-    NotificationService,
+    AuthService,
     CamerasService,
-    PhilipsHueService
+    GoogleCastService,
+    NetatmoService,
+    NotificationService,
+    PhilipsHueService,
+    UserService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

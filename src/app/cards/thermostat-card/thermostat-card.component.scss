@@ -9,6 +9,7 @@
         border: 1px $accent solid;
         border-radius: 5px;
         display: grid;
+        grid-template-columns: repeat(2,auto);
         grid-column-gap: 20px;
         grid-template-areas: 'temp bat';
     

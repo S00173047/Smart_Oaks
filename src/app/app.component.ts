@@ -6,6 +6,7 @@ import { PhilipsHueService } from 'src/services/philips-hue/philips-hue.service'
 import { NotificationService } from 'src/services/notification/notification.service';
 import { Observable, interval } from 'rxjs';
 import { NetatmoService } from 'src/services/netatmo/netatmo.service';
+import { GoogleCastService } from 'src/services/google-cast/google-cast.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,17 @@ export class AppComponent implements OnInit {
   constructor(
     private cams: CamerasService,
     private hue: PhilipsHueService,
-    private netatmo: NetatmoService)  { }
+    private netatmo: NetatmoService,
+    private cast: GoogleCastService)  { }
 
   ngOnInit() {
     this.cams.login();
     this.hue.updateState();
     this.hue.startRefreshing();
     this.netatmo.startTokenRefreshing();
+
+    this.cast.getCastDeviceInfo('10.0.0.112').subscribe(res => {
+      console.log(res)
+    });
   }
 }
