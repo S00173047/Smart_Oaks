@@ -7,12 +7,14 @@
     .topRow {
         display: grid;
         grid-template-columns: 1fr auto;
+        height: 0px;
 
         .modalIcon {
             grid-column: 2;
             margin: 5px;
             margin-bottom: 0px;
             cursor: pointer;
+            z-index: 10;
         }
         .modalIcon:hover {
             color: $primary;
